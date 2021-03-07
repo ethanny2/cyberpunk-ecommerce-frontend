@@ -1,0 +1,72 @@
+{% if contact.sent %}
+ 
+<!--  <div id="fullpage">
+ -->    <div class="section" id="section3">
+     <p>Your message has been sent and we&#8217;ll get back to you soon.</p>
+ <!--    </div> -->
+</div>
+{% else %}
+ 
+
+<!-- <div id="fullpage">
+ -->  
+
+
+ <div class="section" id="section3">
+     <div id="scanlines"></div>
+
+  <h1>Contact</h1>
+    <form method="post" action="/contact">
+      <ul class="unstyled">
+        <li>
+          <label for="name">Name</label>
+          {{ contact | contact_input: 'name' }}
+        </li>
+        <li>
+          <label for="email">Email</label>
+          {{ contact | contact_input: 'email' }}
+        </li>
+        <li>
+          <label for="subject">Subject</label>
+          {{ contact | contact_input: 'subject' }}
+        </li>
+        <li>
+          <label for="message">Message</label>
+          {{ contact | contact_input: 'message' }}
+        </li>
+        <li>
+          <label for="captcha">Spam check</label>
+          <p>Please enter the characters from the image.</p>
+          <div class="captcha_container">{{ contact.captcha }}</div>
+          {{ contact | contact_input: 'captcha' }}
+        </li>
+        <li>
+          <button class="confirm_button" type="submit" name="submit" title="Send us an email">Send</button>
+        </li>
+      </ul>
+    </form>
+    <a target="blank" href="https://www.instagram.com/elseifclothing/"><img  class="instagram" src="https://raw.githubusercontent.com/ethanny2/Big-Cartel-Files/master/images/instragram.png" alt="Instagram Logo"></a>
+  </div>
+<!-- </div>
+ -->
+{% endif %}
+<script>
+  resizeLines();
+  $( window ).resize(function() {
+    resizeLines();
+ });
+
+
+function resizeLines(){
+  // var currentHeight = $( document ).height();
+  // var headerHeight = $('#fixed_header').height();
+  // /*Padding too */
+  // var padding = 20;
+  // console.log('Current Height is ' +currentHeight);
+  // $('#section3').height(currentHeight-headerHeight);
+  // console.log('Updating scanlines to ' +currentHeight+ headerHeight)
+  //   $('#scanlines').height( currentHeight+padding);
+}
+
+  
+</script>

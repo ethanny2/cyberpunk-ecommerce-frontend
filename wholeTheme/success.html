@@ -1,0 +1,40 @@
+<div class="success_screen">
+      <div id="scanlines"></div>
+
+  <p id="cmd2"></p>
+ </div>
+<script>
+var messageStarted = false;
+var greeting = "ORDER COMPLETE. PLEASE GO TO THE CONTACT SECTION OR ELSE IF'S INSTRAGRM IF YOU HAVE ANY FURTHER QUERIES. FOLLOW FOR GIVEWAYS/LATEST NEWS.", 
+    cursor = "<span class='block2'>&#9646;</span>",
+    cmd2 = $('#cmd2');
+     if(messageStarted===false){
+        cmd2.append(cursor);
+        type('#cmd2',greeting,0);
+   }
+   function type(el,text,pos,no){
+    ctext = text.substring(0,pos)+(pos%2?cursor:cursor);
+    $(el).html(ctext);
+    if(pos==text.length){
+        $(el).html(text+cursor);
+    }else{
+        window.setTimeout('type("'+el+'","'+text+'",'+(pos+1)+','+1+');',130);
+    }
+}
+</script>
+<script>
+ var currentHeight = $( document ).height();
+  console.log('Current Height is ' +currentHeight);
+  $('#scanlines').height(currentHeight);
+  console.log('Updated scanlines');
+$( window ).resize(function() {
+	console.log('window resized');
+  var currentHeight = $( document ).height();
+  console.log('Current Height is ' +currentHeight);
+  $('#scanlines').height(currentHeight);
+  console.log('Updated scanlines');
+});
+
+
+
+</script>

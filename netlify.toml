@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  functions = "functions" # netlify dev uses this directory to scaffold and serve your functions
+  publish = "dist"
+
+[dev]
+  framework = "#custom"
+  command = "npm run start-dev" # Command to start your dev server
+  port = 8888 # The port that the netlify dev will be accessible on
+  publish = "dist" # If you use a _redirect file, provide the path to your static content folder
+  targetPort = 9000 # The port for your application server, framework or site generator
+  autoLaunch = true

@@ -1,0 +1,81 @@
+{
+  "name": "webpack-lighthouse-template",
+  "version": "1.0.0",
+  "author": "Ethan Soo Hon",
+  "description": "Simple webpack 4 template for optimizing the performance of static sites in production",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
+    "build": " npm run clean && webpack --config webpack.prod.js  --stats-children",
+    "start-dev": "webpack serve --config webpack.dev.js",
+    "start-mobile-dev": "webpack serve --host 0.0.0.0 --config webpack.dev.js",
+    "convert-webp": "node buildImages.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ethanny2/webpack-lighthouse100-template"
+  },
+  "keywords": [
+    "webpack",
+    "template",
+    "lighthouse 100",
+    "perfect score"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ethanny2/webpack-lighthouse100-template/issues"
+  },
+  "homepage": "https://github.com/ethanny2/webpack-lighthouse100-template",
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "autoprefixer": "^10.2.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "compression-webpack-plugin": "^7.1.2",
+    "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^5.1.1",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-prettier": "^3.3.1",
+    "file-loader": "^6.2.0",
+    "gltf-pipeline": "^3.0.2",
+    "html-loader": "^2.1.1",
+    "html-webpack-plugin": "^5.2.0",
+    "image-minimizer-webpack-plugin": "^2.2.0",
+    "image-webpack-loader": "^7.0.1",
+    "imagemin": "^7.0.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "imagemin-svgo": "^9.0.0",
+    "imagemin-webp": "^6.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "jimp": "^0.16.1",
+    "mini-css-extract-plugin": "^1.3.9",
+    "node-sass": "^5.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss-loader": "^5.0.0",
+    "preload-webpack-plugin": "^3.0.0-beta.4",
+    "prettier": "^2.2.1",
+    "purgecss-webpack-plugin": "^4.0.2",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^11.0.1",
+    "script-ext-html-webpack-plugin": "^2.1.5",
+    "stats.js": "^0.17.0",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.9.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.6.0",
+    "masonry-layout": "^4.2.2"
+  }
+}
