@@ -53,7 +53,7 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     port: 9000,
-    watchContentBase: true
+    watchContentBase: true,
   },
   plugins: [
     // new MiniCssExtractPlugin({

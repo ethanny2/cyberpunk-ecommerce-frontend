@@ -151,14 +151,15 @@ module.exports = {
       defaultAttribute: "defer"
     }),
     //Copy the entire directory of netlify functions to build folder
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, "./functions"),
-    //       to: "./functions/"
-    //     }
-    //   ]
-    // }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "./src/static/models/"),
+          /* Getting it to work in dev*/
+          to: "./static/models"
+        }
+      ]
+    }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
