@@ -11,7 +11,8 @@
     "build": " npm run clean && webpack --config webpack.prod.js  --stats-children",
     "start-dev": "webpack serve --config webpack.dev.js",
     "start-mobile-dev": "webpack serve --host 0.0.0.0 --config webpack.dev.js",
-    "convert-webp": "node buildImages.js"
+    "convert-webp": "node buildImages.js",
+    "compress-draco": "gltf-pipeline -i ./src/static/models/skeleton/plotting.gltf -o ./src/static/models/skeleton/plotting.gltf -d"
   },
   "repository": {
     "type": "git",

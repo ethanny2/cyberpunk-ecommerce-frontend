@@ -19,6 +19,7 @@ module.exports = {
     fallback: {
       fs: false
     }
+    // fallback: { path: false }
   },
   stats: {
     chunks: true,
@@ -34,13 +35,13 @@ module.exports = {
   },
   output: {
     filename: "js/[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist")
   },
   module: {
     rules: [
       {
-        test: /\.(jpg|JPG|jpeg|png|gif|mp3|svg|ttf|webp|woff2|woff|eot|mtl|obj|dae)$/i,
-        type: 'asset/resource'
+        test: /\.(jpg|JPG|jpeg|png|gif|mp3|svg|ttf|webp|woff2|woff|eot|mtl|obj|dae|gltf)$/i,
+        type: "asset/resource"
       },
       // {
       //   test: /\.(jpg|JPG|jpeg|png|gif|mp3|svg|ttf|webp|woff2|woff|eot)$/i,
@@ -109,7 +110,7 @@ module.exports = {
             }
           }
         ]
-      },
+      }
       // {
       //   test: /\.(html)$/,
       //   use: {
@@ -156,8 +157,13 @@ module.exports = {
         {
           from: path.resolve(__dirname, "./src/static/models/"),
           /* Getting it to work in dev*/
-          to: "./static/models"
+          to: "/static/models"
         }
+        // {
+        //   from: path.resolve(__dirname, "./src/static/js/draco"),
+        //   /* Getting it to work in dev*/
+        //   to: "js/draco"
+        // }
       ]
     }),
     new MiniCssExtractPlugin({

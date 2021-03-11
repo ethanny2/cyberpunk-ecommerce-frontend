@@ -1,24 +1,21 @@
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { ColladaLoader } from "three/examples/jsm/loaders/ColladaLoader";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { Lensflare, LensflareElement } from "three/examples/jsm/objects/Lensflare";
 import { WEBGL } from "./detector";
 import * as THREE from "three";
 import flare1 from "../static/images/lensflare0.png";
 import flare2 from "../static/images/lensflare2.jpg";
 import flare3 from "../static/images/lensflare3.png";
-import worldMtl from "../static/models/earth.mtl";
-import earthTexture from "../static/models/earthTexture.jpg";
-console.log(earthTexture);
-import worldModel from "../static/models/earth.obj";
-import skeletonModel from "../static/models/skeleton/plotting.dae";
+import worldModel from "../static/models/earth.gltf";
+import skeletonModel from "../static/models/skeleton/plotting.gltf";
 import skyboxFront from "../static/images/skyboxes/ame_nebula/purplenebula_ft.png";
 import skyboxBack from "../static/images/skyboxes/ame_nebula/purplenebula_bk.png";
 import skyboxUp from "../static/images/skyboxes/ame_nebula/purplenebula_up.png";
 import skyboxDown from "../static/images/skyboxes/ame_nebula/purplenebula_dn.png";
 import skyboxRight from "../static/images/skyboxes/ame_nebula/purplenebula_rt.png";
 import skyboxLeft from "../static/images/skyboxes/ame_nebula/purplenebula_lf.png";
-
+const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
+// path.resolve(__dirname, "./draco/");
 if (WEBGL.isWebGLAvailable()) {
   // Initiate function or other initializations here
   var container;
@@ -32,6 +29,7 @@ if (WEBGL.isWebGLAvailable()) {
   var mouseY = 0;
   var windowHalfX = window.innerWidth / 2;
   var windowHalfY = window.innerHeight / 2;
+  if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
   document.addEventListener("mousemove", onDocumentMouseMove, false);
   init();
   animate();
@@ -44,9 +42,10 @@ if (WEBGL.isWebGLAvailable()) {
 function init() {
   container = document.createElement("div");
   document.body.appendChild(container);
-  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100000);
-  camera.position.z = 5000;
-  camera.position.y = -2000;
+  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+  camera.position.z = 50;
+  camera.position.y = 100;
+  camera.position.x = -30;
   scene = new THREE.Scene();
   clock = new THREE.Clock();
   const dirLight = new THREE.DirectionalLight(0xffffff, 0.05);
@@ -59,7 +58,7 @@ function init() {
   var textureFlare0 = textureLoader.load(flare1);
   var textureFlare2 = textureLoader.load(flare2);
   var textureFlare3 = textureLoader.load(flare3);
-  addLight(0.55, 0.9, 0.6, 3500, 4000, -4000);
+  addLight(0.55, 0.9, 0.6, 500, 800, -2000);
   function addLight(h, s, l, x, y, z) {
     var light = new THREE.PointLight(0xffffff, 1.5, 2000);
     light.color.setHSL(h, s, l);
@@ -87,40 +86,44 @@ function init() {
   };
 
   const onError = function () {};
-  var ambient = new THREE.AmbientLight(0x444444);
-  scene.add(ambient);
-  new MTLLoader(manager).setResourcePath("../static/models/").load(worldMtl, function (materials) {
-    materials.preload();
-    new OBJLoader(manager).setMaterials(materials).load(
-      worldModel,
-      function (object) {
-        object.position.y = -95;
-        object.scale.x = 3000;
-        object.scale.y = 3000;
-        object.scale.z = 3000;
-        scene.add(object);
-      },
-      onProgress,
-      onError
-    );
-  });
-
+  // var ambient = new THREE.AmbientLight(0x444444);
+  var ambientLight = new THREE.AmbientLight(0xcccccc);
+  scene.add(ambientLight);
+  const loader = new GLTFLoader(manager);
+  const dracoLoader = new DRACOLoader(manager);
+  dracoLoader.setDecoderPath(dracoDecodePath);
+  loader.setDRACOLoader(dracoLoader);
+  loader.load(
+    worldModel,
+    function (gltf) {
+      console.log({ gltf });
+      gltf.scene.position.y = 0;
+      gltf.scene.position.x = 3;
+      gltf.scene.position.z = 11;
+      gltf.scene.scale.x = 18;
+      gltf.scene.scale.y = 18;
+      gltf.scene.scale.z = 18;
+      scene.add(gltf.scene);
+    },
+    onProgress,
+    onError
+  );
   /* Add skull obeject*/
-  var loader = new ColladaLoader();
-  //loader.options.convertUpAxis = true;
-  loader.load(skeletonModel, function (collada) {
-    var object = collada.scene;
-    var animations = collada.animations;
-    mixer = new THREE.AnimationMixer(object);
-    var action = mixer.clipAction(animations[0]).play();
-    object.scale.x = 2000;
-    object.scale.y = 2000;
-    object.scale.z = 2000;
-    object.position.y = -200;
-    object.position.x = -100;
-    object.position.z = -1400;
-    scene.add(object);
-  });
+  loader.load(
+    skeletonModel,
+    function (gltf) {
+      var animations = gltf.animations;
+      mixer = new THREE.AnimationMixer(gltf.scene);
+      var action = mixer.clipAction(animations[0]).play();
+      gltf.scene.position.y = -1;
+      gltf.scene.scale.x = 1500;
+      gltf.scene.scale.y = 1500;
+      gltf.scene.scale.z = 1500;
+      scene.add(gltf.scene);
+    },
+    onProgress,
+    onError
+  );
 
   //load the skybox
   scene.background = new THREE.CubeTextureLoader().load([
@@ -142,7 +145,7 @@ function init() {
     mesh.position.x = Math.random() * 10000 - 5000;
     mesh.position.y = Math.random() * 10000 - 5000;
     mesh.position.z = Math.random() * 10000 - 5000;
-    mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
+    mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 2 + 1;
     scene.add(mesh);
     spheres.push(mesh);
   }
@@ -150,6 +153,7 @@ function init() {
   //Create the renderer
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setClearColor(0xc5c5c3);
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
   window.addEventListener("resize", onWindowResize, false);
@@ -166,9 +170,21 @@ function onWindowResize() {
 
 function onDocumentMouseMove(event) {
   //Camera control on mouse move events
-  mouseX = (event.clientX - windowHalfX) * 10;
-  mouseY = (event.clientY - windowHalfY) * 10;
+  mouseX = (event.clientX - windowHalfX) * 0.05;
+  mouseY = (event.clientY - windowHalfY) * 0.05;
 }
+function onMobileTouchMove(event) {
+  console.log("Mobile touch event");
+  //Camera control on mouse move event
+  console.log({ event });
+  mouseX = (event.touches[0].clientX - windowHalfX) * 0.05;
+  mouseY = (event.touches[0].clientY - windowHalfY) * 0.05;
+}
+
+function isTouchEnabled() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}
+
 function animate() {
   requestAnimationFrame(animate);
   render();
