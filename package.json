@@ -76,6 +76,7 @@
     "@popperjs/core": "^2.9.0",
     "bootstrap": "^3.3.7",
     "jquery": "^3.6.0",
-    "masonry-layout": "^4.2.2"
+    "masonry-layout": "^4.2.2",
+    "three": "^0.126.1"
   }
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Elseif Clothing</title>
-		<!--Favicons (too dark?) -->
-		<link rel="apple-touch-icon" sizes="57x57" href="textures/apple-icon-57x57.png">
+  <head>
+    <title>Elseif Clothing</title>
+    <!--Favicons (too dark?) -->
+    <!-- <link rel="apple-touch-icon" sizes="57x57" href="textures/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="textures/apple-icon-60x60.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="textures/apple-icon-72x72.png">
 		<link rel="apple-touch-icon" sizes="76x76" href="textures/apple-icon-76x76.png">
@@ -16,78 +16,100 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="textures/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="96x96" href="textures/favicon-96x96.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="textures/favicon-16x16.png">
-		<link rel="manifest" href="textures/manifest.json">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="msapplication-TileImage" content="textures/ms-icon-144x144.png">
-		<meta name="theme-color" content="#ffffff">
-		<!-- -->
+		<link rel="manifest" href="textures/manifest.json"> -->
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="textures/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
 
-		<!-- Font awesome CDN --> 
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Font awesome CDN -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
 
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link href="page_styling.css" rel="stylesheet" type="text/css">
-		<link href="https://fonts.googleapis.com/css?family=Kanit|Teko" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-		</script>
-		<script src="../build/three.js"></script>
-		<script src="js/Detector.js"></script>
-		<script src="js/loaders/MTLLoader.js"></script>
-		<script src="js/loaders/OBJLoader.js"></script>
-		<script src="js/loaders/ColladaLoader.js"></script>
-		<script src="js/controls/OrbitControls.js"></script>
-		<script src="textures/navigation_functions.js"></script>
-		
-	</head>
-	<body>
-		<!-- Slide down full screen menu-->
-		<div id="myNav" class="overlay">
- 		<div  class="closebtn"  onclick="closeNav()">&times; </div>
- 		  <div class="logo_container">
- 		  	<!-- <img src="textures/Final_logo.png" alt="Else If Logo"> -->
- 		  	<video onmouseover="this.play()" onmouseout="this.pause()" src="textures/else_if_video.mp4" autobuffer autoloop loop   ></video>
- 		  </div>
- 			 <!-- Overlay content -->
-  			<div class="overlay-content">
-   				<div id="about">  
-   					<p class="subtitle about_sub">About</p>
-   					<div id="about_content">
-   				<!-- 	<a target="blank" href="https://github.com/ethanny2">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <!-- <link href="page_styling.css" rel="stylesheet" type="text/css" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Teko" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="../build/three.js"></script> -->
+    <!-- <script src="js/Detector.js"></script> -->
+    <!-- <script src="js/loaders/MTLLoader.js"></script> -->
+    <!-- <script src="js/loaders/OBJLoader.js"></script> -->
+    <!-- <script src="js/loaders/ColladaLoader.js"></script> -->
+    <!-- <script src="js/controls/OrbitControls.js"></script> -->
+    <!-- <script src="textures/navigation_functions.js"></script> -->
+  </head>
+  <body>
+    <!-- Slide down full screen menu-->
+    <div id="myNav" class="overlay">
+      <div class="closebtn" onclick="closeNav()">&times;</div>
+      <div class="logo_container">
+        <!-- <img src="textures/Final_logo.png" alt="Else If Logo"> -->
+        <video
+          onmouseover="this.play()"
+          onmouseout="this.pause()"
+          src="../videos/else_if_video.mp4"
+          autobuffer
+          autoloop
+          loop
+          muted
+        ></video>
+      </div>
+      <!-- Overlay content -->
+      <div class="overlay-content">
+        <div id="about">
+          <p class="subtitle about_sub">About</p>
+          <div id="about_content">
+            <!-- 	<a target="blank" href="https://github.com/ethanny2">
    						<i class="fa fa-github fa-3x" aria-hidden="true"></i>
    					</a> -->
-   					<video onmouseover="this.play()" onmouseout="this.pause()" src="textures/Final Video.mp4" autobuffer autoloop loop   ></video>
-   						<p>
-   							Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change . This site and the video were created using the Threejs library for web rendering and Free3d.com for models. 
-   						</p>
-   					</div>
-   				</div>
-   				<div id="shop"> 
-   				 	<p class="subtitle shop_sub">Shop</p>
-   					<div id="shop_content">
-   						<p>
-   						Shop Content here
-   						</p>
-   					</div>
-   				 </div>
-   				<div id="contact">
-   				 	<p class="subtitle contact_sub">Contact</p>
-   					<div id="contact_content">
-   						<a  target='blank' href="https://www.instagram.com/elseifclothing/" title="Elseif Instragram">
-   						<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
-   						</a>
-   						<a href="mailto:elseifclothing1@gmail.com" target="blank">
-   						<i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
-   						</a>
-   					</div>
-   				 </div>
-  			</div>
-		</div>
-<!-- Use any element to open/show the overlay navigation menu -->
-<span class="menu" >
-		<img id="logo" onclick="openNav()" src="textures/Final_logo.png" alt="Logo">
-</span>
+            <video
+              onmouseover="this.play()"
+              onmouseout="this.pause()"
+              src="../videos/story_vid.mp4"
+              autobuffer
+              autoloop
+              loop
+            ></video>
+            <p>
+              Elseif is an online clothing store created as a collaboration between a programmer and a designer.
+              Products range from modern clothing to fan merchandise for current artists. The brand name and logo is
+              tentative and subject to change . This site and the video were created using the Threejs library for web
+              rendering and Free3d.com for models.
+            </p>
+          </div>
+        </div>
+        <div id="shop">
+          <p class="subtitle shop_sub">Shop</p>
+          <div id="shop_content">
+            <p>Shop Content here</p>
+          </div>
+        </div>
+        <div id="contact">
+          <p class="subtitle contact_sub">Contact</p>
+          <div id="contact_content">
+            <a target="blank" href="https://www.instagram.com/elseifclothing/" title="Elseif Instragram">
+              <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:elseifclothing1@gmail.com" target="blank">
+              <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Use any element to open/show the overlay navigation menu -->
+    <span class="menu">
+      <img id="logo" onclick="openNav()" src="../images/Final_logo.png" alt="Logo" />
+    </span>
 
-<!-- 		<script src="webgl_effects.js"></script> -->
-	</body>
+    <!-- 		<script src="webgl_effects.js"></script> -->
+  </body>
 </html>
