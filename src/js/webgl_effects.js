@@ -15,33 +15,40 @@ import skyboxDown from "../static/images/skyboxes/ame_nebula/purplenebula_dn.png
 import skyboxRight from "../static/images/skyboxes/ame_nebula/purplenebula_rt.png";
 import skyboxLeft from "../static/images/skyboxes/ame_nebula/purplenebula_lf.png";
 const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
-// path.resolve(__dirname, "./draco/");
-if (WEBGL.isWebGLAvailable()) {
-  // Initiate function or other initializations here
-  var container;
-  var clock;
-  var camera, scene, renderer;
-  // var mesh, lightMesh, geometry;
-  var spheres = [];
-  // var directionalLight, pointLight;
-  var mixer;
-  var mouseX = 0;
-  var mouseY = 0;
-  var windowHalfX = window.innerWidth / 2;
-  var windowHalfY = window.innerHeight / 2;
-  if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
-  document.addEventListener("mousemove", onDocumentMouseMove, false);
-  init();
-  animate();
-} else {
-  const warning = WEBGL.getWebGLErrorMessage();
-  document.getElementById("container").appendChild(warning);
-}
+// Initiate function or other initializations here
+var container;
+var clock;
+var camera, scene, renderer;
+// var mesh, lightMesh, geometry;
+var spheres = [];
+// var directionalLight, pointLight;
+var mixer;
+var mouseX = 0;
+var mouseY = 0;
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+let pages = document.getElementsByClassName("page");
+let stopRender = false;
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (WEBGL.isWebGLAvailable()) {
+    if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
+    document.addEventListener("mousemove", onDocumentMouseMove, false);
+    Array.from(pages).forEach((page) => {
+      console.log(page.style);
+    });
+    init();
+    animate();
+  } else {
+    const warning = WEBGL.getWebGLErrorMessage();
+    document.getElementById("container").appendChild(warning);
+  }
+});
 
 // animate();
 function init() {
   container = document.createElement("div");
-  document.body.appendChild(container);
+  document.getElementById("home").appendChild(container);
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.z = 50;
   camera.position.y = 100;
