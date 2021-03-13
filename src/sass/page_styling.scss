@@ -1,11 +1,12 @@
-body{
-	background:#777;
-	padding:0;
-	margin:0;
-	font-weight: bold;
-	overflow:hidden;
-/*	font-family: 'Kanit', sans-serif;
-*/	font-family: 'Teko', sans-serif;
+body {
+  background: #777;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  overflow: hidden;
+  /*	font-family: 'Kanit', sans-serif;
+*/
+  font-family: "Teko", sans-serif;
 }
 
 * {
@@ -16,453 +17,455 @@ body{
 
 /* The Overlay (background) */
 .overlay {
-    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
-    height: 100%;
-    width: 0;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    background-color: rgb(0,0,0); /* Black fallback color */
-    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0); /* Black fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
 /* Position the content inside the overlay */
 .overlay-content {
-    position: relative;
-    top: 10%; /* 25% from the top */
-    width: 100%; /* 100% width */
-    text-align: center; /* Centered text/links */
-    margin-top: 20px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  position: relative;
+  top: 10%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 20px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
 /* The navigation links inside the overlay */
-.overlay p,a{
-    padding: 8px;
-    text-decoration: none;
-    font-size: 120%;
-    color: #818181;
-    display: block; /* Display block instead of inline */
-    transition: 0.3s; /* Transition effects on hover (color) */
+.overlay p,
+a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 120%;
+  color: #818181;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
 }
 
 /* When you mouse over the navigation links, change their color */
-.overlay p:hover, .overlay p:focus{
-/*	cursor: pointer;
-*/    color: #f1f1f1;
+.overlay p:hover,
+.overlay p:focus {
+  /*	cursor: pointer;
+*/
+  color: #f1f1f1;
 }
 
 /* Position the close button (top right corner) */
 .overlay .closebtn {
-	    color: #818181;
-    position: absolute;
-    top: 10%;
-    right: 5%;
-    font-size: 240%;
+  color: #818181;
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  font-size: 240%;
 }
 
 /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
 @media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
-    .overlay .closebtn {
-        font-size: 40px;
-        top: 15px;
-        right: 35px;
-    }
+  .overlay a {
+    font-size: 20px;
+  }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
 }
 
-.menu{
-	padding: 0;
-	margin: 0;
-	width: 25%;
-	height: 25%;
-	text-align: left;
-	right: 87%;
-	bottom: 80%;
-	position: fixed;
-
+.menu {
+  padding: 0;
+  margin: 0;
+  width: 25%;
+  height: 25%;
+  text-align: left;
+  right: 87%;
+  bottom: 80%;
+  position: fixed;
 }
-.menu img{
- 	width: 100%;
-	height: 100%;
-	cursor: pointer;
+.menu img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
-.logo_container{
-	text-align: center;
-	padding: 0;
-	width: 100%; 
-	height: 10%;
-	margin:0;
-/*	 border: 1px solid gray;
-*/  overflow: hidden;
+.logo_container {
+  text-align: center;
+  padding: 0;
+  width: 100%;
+  height: 10%;
+  margin: 0;
+  /*	 border: 1px solid gray;
+*/
+  overflow: hidden;
   background: black;
-
 }
-.logo_container video{
-	width: 100%;
-	width: 120px !important;
+.logo_container video {
+  width: 100%;
+  width: 120px !important;
   height: auto !important;
   background-size: cover;
   transition: 1s opacity;
-  z-index:1;
- bottom: 120px;
+  z-index: 1;
+  bottom: 120px;
 }
 
-.overlay-content > *{
-	color:white;
-	font-size: 200%;	
+.overlay-content > * {
+  color: white;
+  font-size: 200%;
 }
 
-.subtitle{
-	font-size: 130%;
-	margin-bottom: 0;
+.subtitle {
+  font-size: 130%;
+  margin-bottom: 0;
 }
 
-#about_content{
-	text-align: center;
-	font-size: 60%;
-	height: 50%;
-	position: relative;   
+#about_content {
+  text-align: center;
+  font-size: 60%;
+  height: 50%;
+  position: relative;
 }
-#shop_content{
-	text-align: center;
-	font-size: 60%;
-	height: 50%;
-	position: relative;   
+#shop_content {
+  text-align: center;
+  font-size: 60%;
+  height: 50%;
+  position: relative;
 }
-#contact_content{
-	text-align: center;
-	font-size: 60%;
-	height: 50%;
-	position: relative;   
-}
-
-.subtitle{
-	margin-bottom: 0;
-	cursor: pointer;
+#contact_content {
+  text-align: center;
+  font-size: 60%;
+  height: 50%;
+  position: relative;
 }
 
-#contact_content{
-	text-align: center;
-	top:20px;
-	padding-bottom: 10%;
-	margin:  0 auto;
-	display: block;
-/*	border: 2px solid red;
-*/	width: 100%;
+.subtitle {
+  margin-bottom: 0;
+  cursor: pointer;
 }
 
-#contact_content a{
-/*		border: 2px solid white;
-*/		
-}	
-
-.external_link{
-	font-size: 40%;
+#contact_content {
+  text-align: center;
+  top: 20px;
+  padding-bottom: 10%;
+  margin: 0 auto;
+  display: block;
+  /*	border: 2px solid red;
+*/
+  width: 100%;
 }
 
-
-#about_content video{
-	 width: 100%    !important;
-  height: auto   !important;
+#contact_content a {
+  /*		border: 2px solid white;
+*/
 }
 
+.external_link {
+  font-size: 40%;
+}
+
+#about_content video {
+  width: 100% !important;
+  height: auto !important;
+}
 
 /*Queries */
 
-
-@media(min-width:320px){
-	#about_content video{
-	 width: 100%    !important;
-  	 height: auto   !important;
-	}	
-	.overlay p{
-		font-size: 160%;
-	}
-	.menu{
-		right: 63%;
-		bottom: 80%;
-		width: 50%;
-		height: 25%;
-	}
-	.overlay .closebtn {
-	color:  #818181;
-	height: auto;
-	display: block;
+@media (min-width: 320px) {
+  #about_content video {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .overlay p {
+    font-size: 160%;
+  }
+  .menu {
+    right: 63%;
+    bottom: 80%;
+    width: 50%;
+    height: 25%;
+  }
+  .overlay .closebtn {
+    color: #818181;
+    height: auto;
+    display: block;
     position: absolute;
-    top:10%;
+    top: 10%;
     padding: 0;
     right: 5%;
     font-size: 300%;
     z-index: 100;
     width: auto;
     margin-bottom: 80px;
+  }
+  .logo_container video {
+    width: 115px !important;
+  }
 }
-	.logo_container video{
-		width: 115px !important;
-	}
-	
-
-}
-
-
-
-
 
 /*Change if viewport is 360px (galaxy s5) or wider */
-@media(min-width:360px){
-	#about_content video{
-	 width: 100%    !important;
-  	 height: auto   !important;
-	}	
-	.overlay p{
-		font-size: 150%;
-	}
-	.menu{
-		right: 63%;
-		bottom: 75%;
-		width: 50%;
-		height: 30%;
-	}
-	.overlay .closebtn {
-	color:  #818181;
-	height: auto;
-	display: block;
+@media (min-width: 360px) {
+  #about_content video {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .overlay p {
+    font-size: 150%;
+  }
+  .menu {
+    right: 63%;
+    bottom: 75%;
+    width: 50%;
+    height: 30%;
+  }
+  .overlay .closebtn {
+    color: #818181;
+    height: auto;
+    display: block;
     position: absolute;
-    top:10%;
+    top: 10%;
     padding: 0;
     right: 5%;
     font-size: 300%;
     z-index: 100;
     width: auto;
     margin-bottom: 80px;
-}
-	.logo_container video{
-		width: 130px !important;
-	}
-
-}
-
-@media(min-width:375px){
-	.menu{
-		right: 63%;
-		bottom: 83.5%;
-		width: 50%;
-		height: 20%;
-	}
+  }
+  .logo_container video {
+    width: 130px !important;
+  }
 }
 
-
-@media(min-width:412px){
-	.overlay p{
-		font-size: 160%;
-	}
-	.menu{
-		right: 63%;
-		bottom: 84%;
-		width: 50%;
-		height: 20%;
-	}
+@media (min-width: 375px) {
+  .menu {
+    right: 63%;
+    bottom: 83.5%;
+    width: 50%;
+    height: 20%;
+  }
 }
 
-@media(min-width:568px){
-	.menu{
-		width: 50%;
-		height: 55%;
-		right: 63%;
-		bottom: 55%;
-	}
+@media (min-width: 412px) {
+  .overlay p {
+    font-size: 160%;
+  }
+  .menu {
+    right: 63%;
+    bottom: 84%;
+    width: 50%;
+    height: 20%;
+  }
 }
 
+@media (min-width: 568px) {
+  .menu {
+    width: 50%;
+    height: 55%;
+    right: 63%;
+    bottom: 55%;
+  }
+}
 
-@media(min-width:640px){
-	.menu{
-		width: 40%;
-		height: 35%;
-		right: 70%;
-		bottom: 70%;
-	}
+@media (min-width: 640px) {
+  .menu {
+    width: 40%;
+    height: 35%;
+    right: 70%;
+    bottom: 70%;
+  }
 }
 
 /*IPAD */
-@media(min-width:768px){
-	.overlay p{
-		font-size: 200%;
-	}
-	.menu{
-		width: 45%;
-		height: 20%;
-		right: 67%;
-		bottom: 84%;
-	}
-	.logo_container video{
-		width: 200px !important;
-	}
-	.overlay .closebtn{
-		font-size: 350%;
-		right: 2%;
-	}
+@media (min-width: 768px) {
+  .overlay p {
+    font-size: 200%;
+  }
+  .menu {
+    width: 45%;
+    height: 20%;
+    right: 67%;
+    bottom: 84%;
+  }
+  .logo_container video {
+    width: 200px !important;
+  }
+  .overlay .closebtn {
+    font-size: 350%;
+    right: 2%;
+  }
 }
 
 /*IPAD pro wtf is this*/
-@media(min-width:1024px){
-	.menu{
-		width: 50%;
-		height: 25%;
-		right: 63%;
-		bottom: 80%;
-	}
-	.menu img{
-		height: 100%;
-		width: 100%;
-	}
-	.logo_container video{
-		width: 260px !important;
-	}
-
+@media (min-width: 1024px) {
+  .menu {
+    width: 50%;
+    height: 25%;
+    right: 63%;
+    bottom: 80%;
+  }
+  .menu img {
+    height: 100%;
+    width: 100%;
+  }
+  .logo_container video {
+    width: 260px !important;
+  }
 }
 
-@media(min-width:1200px){
-	.menu{
-		width: 25%;
-		height: 35%;
-		right: 82%;
-		bottom: 72%;
-	}
-	.menu img{
-		height: 100%;
-		width: 100%;
-	}
-	.logo_container video{
-		width: 200px !important;
-	}
-	.logo_container{
-		height: 15%;
-	}
-	#about_content video{
-	 width: 80%    !important;
- 	 height: auto   !important;
-	}
-	.overlay .closebtn{
-		font-size: 350%;
-		right: 2%;
-		top:15%;
-	}
+@media (min-width: 1200px) {
+  .menu {
+    width: 25%;
+    height: 35%;
+    right: 82%;
+    bottom: 72%;
+  }
+  .menu img {
+    height: 100%;
+    width: 100%;
+  }
+  .logo_container video {
+    width: 200px !important;
+  }
+  .logo_container {
+    height: 15%;
+  }
+  #about_content video {
+    width: 80% !important;
+    height: auto !important;
+  }
+  .overlay .closebtn {
+    font-size: 350%;
+    right: 2%;
+    top: 15%;
+  }
 }
 
-@media(min-width:1366px){
-	.menu{
-		width: 30%;
-		height: 35%;
-		right: 78%;
-		bottom: 72%;
-	}	
+@media (min-width: 1366px) {
+  .menu {
+    width: 30%;
+    height: 35%;
+    right: 78%;
+    bottom: 72%;
+  }
 }
 
+$btn-size:3rem;
+$btn-arrowsize: $btn-size / 4;
 
-main{
-	background: #191919;
-  min-height: 100vh;
+// Button colors
+$btn-color: hotpink;
+$btn-bg: #111;
+$btn-border: hotpink;
+
+// Button hover colors
+$btn-hover-color: #111;
+$btn-bg-hover: white;
+$btn-hover-border-color: white;
+
+.arrowbtn {
+  position: absolute;
+  width: $btn-size;
+  height: $btn-size;
+  background: $btn-bg;
+  border: 2px solid $btn-border;
+  border-radius: $btn-size;
+  color: $btn-color;
+  cursor: pointer;
+  line-height: $btn-size;
+	bottom:0;
+	text-align: center;
+	transform: translate(-50%, -50%);
+  // margin-left: -($btn-size / 2);
+  transition: all 0.25s ease-in-out;
+  &:hover {
+    background: $btn-bg-hover;
+    border-color: $btn-hover-border-color;
+    color: $btn-hover-color;
+  }
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    width: $btn-arrowsize;
+    height: $btn-arrowsize;
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.arrowbtn-down {
+  &:after {
+    margin-left: -($btn-arrowsize * 0.5);
+    margin-top: -($btn-arrowsize * 0.75);
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: rotateZ(45deg);
+  }
+}
+
+main {
+  // background: #191919;
+  // min-height: 100vh;
+	height:100%;
   font-family: Montserrat, sans-serif;
+  min-width: 100%;
+	position:relative;
+  margin-left: 3rem;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
 }
 
 nav a {
-	font-size: 40px;
-	color: #fff;
-	text-decoration: none;
-	padding: 20px;
-	text-align: center;
+  font-size: 40px;
+  color: #fff;
+  text-decoration: none;
+  // padding: 20px;
+  text-align: center;
 }
 
 nav {
-	position: fixed;
-	left: 0;
-	z-index: 50;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	height: 100vh;
-	background: #6b6a6a;
-	width:5rem;
+  position: fixed;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100vh;
+  background: #504d4d;
+  width: 3rem;
+  border-right: 1px solid #181818a8;
 }
 
-
-section {
-	position: absolute;
-	top: 0;
-	height: 100vh;
-	width: 0;
-	opacity: 0;
-	transition: all ease-in .5s;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-} 
-
-section h1 {
-	color: #fff;
-	font-size: 50px;
-	text-transform: uppercase;
-	opacity: 0;
+nav {
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    // border-top: 1px solid #747272a8;
+    // border-bottom: 1px solid #747272a8;
+    width: 100%;
+    height: auto;
+    height: 20%;
+  }
+  svg {
+    width: 60%;
+  }
+  img {
+    width: 6rem;
+  }
 }
 
-/* Styles applied on trigger */
-section:target {
-	opacity: 1;
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10;
-}
-
-
-section:target h1 {
-	opacity: 0;
-	animation: 2s fadeIn forwards .5s;
-}
-
-#home {
-	background:red;
-	opacity: 1;
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-#shop {
-	background: darkgreen;
-}
-
-#cart {
-	background: orange;
-}
-
-#contact {
-	background: coral;
-}
-
-#checkout {
-	background:cadetblue;
-}
-
-@keyframes fadeIn {
-	100% { opacity:1 }
-}
-
-nav{
-	a{
-		display:flex;
-		justify-content: center;
-		align-items: center;
-	}
-	svg{
-		width: 3rem;
-	}
-	img{
-		width:10rem;
-	}
+ h1 {
+  color: #fff;
+  font-size: 2rem;
+  text-transform: uppercase;
 }

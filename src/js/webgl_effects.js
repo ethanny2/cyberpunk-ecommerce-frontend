@@ -48,7 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
 // animate();
 function init() {
   container = document.createElement("div");
-  document.getElementById("home").appendChild(container);
+  const main = document.getElementsByTagName("main")[0];
+  main.appendChild(container);
+  // const nextPage = document.createElement("span");
+  // nextPage.className += "arrowbtn arrowbtn-down";
+  // container.appendChild(nextPage);
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.z = 50;
   camera.position.y = 100;
