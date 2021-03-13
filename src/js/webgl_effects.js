@@ -27,16 +27,37 @@ var mouseX = 0;
 var mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
-let pages = document.getElementsByClassName("page");
-let stopRender = false;
+const downArrow = document.getElementById("down");
+
+function handleOrientation(event) {
+  // var absolute = event.absolute;
+  console.log("Device orentation changed");
+  // var alpha = event.alpha; //z-axis 0-360
+  var beta = event.beta; // x-axis -180- 180
+  // var gamma = event.gamma; //y-axis -90 to 90
+  // mouseX = alpha * 3 * 0.3;
+  // if (gamma > 0) {
+  //   mouseX = -gamma * 0.25;
+  // } else {
+  //   mouseX = -gamma * 0.25;
+  // }
+  //80-100
+  // if (beta <= 100 && beta <= 80) {
+  // console.log({ beta }, camera.position.y);
+  // } else {
+  console.log({ beta });
+  mouseY = (beta * 5 - windowHalfY) * 0.3;
+  // }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   if (WEBGL.isWebGLAvailable()) {
-    if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
+    // if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
     document.addEventListener("mousemove", onDocumentMouseMove, false);
-    Array.from(pages).forEach((page) => {
-      console.log(page.style);
-    });
+    window.addEventListener("deviceorientation", handleOrientation);
+    // downArrow.addEventListener("click", () => {
+    //   document.getElementById("video").scrollIntoView();
+    // });
     init();
     animate();
   } else {
@@ -48,8 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // animate();
 function init() {
   container = document.createElement("div");
+  container.id = "scene";
   const main = document.getElementsByTagName("main")[0];
-  main.appendChild(container);
+  main.prepend(container);
   // const nextPage = document.createElement("span");
   // nextPage.className += "arrowbtn arrowbtn-down";
   // container.appendChild(nextPage);
@@ -69,7 +91,7 @@ function init() {
   var textureFlare0 = textureLoader.load(flare1);
   var textureFlare2 = textureLoader.load(flare2);
   var textureFlare3 = textureLoader.load(flare3);
-  addLight(0.55, 0.9, 0.6, 500, 800, -2000);
+  addLight(0.55, 0.9, 0.6, 300, 525, -2000);
   function addLight(h, s, l, x, y, z) {
     var light = new THREE.PointLight(0xffffff, 1.5, 2000);
     light.color.setHSL(h, s, l);
@@ -165,7 +187,7 @@ function init() {
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setClearColor(0xc5c5c3);
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(main.offsetWidth, main.offsetHeight);
   container.appendChild(renderer.domElement);
   window.addEventListener("resize", onWindowResize, false);
   renderer.outputEncoding = THREE.sRGBEncoding;

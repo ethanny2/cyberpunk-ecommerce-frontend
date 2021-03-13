@@ -408,19 +408,38 @@ $btn-hover-border-color: white;
     transform: rotateZ(45deg);
   }
 }
+#scene{
+	width:100%;
+	display:inline-block;
+	canvas{
+		width:100%;
+	}
+}
 
+html, body, canvas {
+
+	touch-action: auto;
+	
+	}
 main {
   // background: #191919;
-  // min-height: 100vh;
-	height:100%;
+  height: 100vh;
+	// width:100%;
+	max-width: 100%;
+	overflow-y: scroll;
+	overflow-x:hidden;
   font-family: Montserrat, sans-serif;
-  min-width: 100%;
 	position:relative;
   margin-left: 3rem;
 	display:flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
+}
+main section {
+	min-height:100vh;
+	// width:100%;
+	// display:none;
 }
 
 nav a {
