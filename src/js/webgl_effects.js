@@ -27,7 +27,6 @@ var mouseX = 0;
 var mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
-const downArrow = document.getElementById("down");
 const introMessage =
   "Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change .";
 
@@ -62,14 +61,67 @@ function handleCommandLineMessage(msg) {
   }
 }
 
+function onTransitionEnd(event) {
+  event.target.remove();
+}
+
+function createObserver() {
+  const cmd = document.getElementsByClassName("typing")[0];
+  let observer;
+  let options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: [0.5]
+  };
+
+  observer = new IntersectionObserver(handleIntersect, options);
+  observer.observe(cmd);
+}
+
+function handleIntersect(entries, observer) {
+  const cmd = document.getElementsByClassName("typing")[0];
+  entries.forEach((entry) => {
+    if (entry.intersectionRatio > 0.5) {
+      handleCommandLineMessage(introMessage);
+      // Only happens once
+      observer.unobserve(cmd);
+      console.log("TERMINAL IN VIEW");
+    }
+  });
+}
 document.addEventListener("DOMContentLoaded", () => {
+  let root = document.documentElement;
   if (WEBGL.isWebGLAvailable()) {
+    const closeBtn = document.getElementById("closeMenu");
+    const nav = document.getElementsByTagName("nav")[0];
+    const logo = document.getElementById("logo");
+    logo.addEventListener("click", () => {
+      if (nav.classList.contains("hidden")) {
+        root.style.setProperty("--navWidth", "3rem");
+      } else {
+        root.style.setProperty("--navWidth", "0rem");
+      }
+      nav.classList.toggle("hidden");
+      logo.classList.toggle("hidden");
+      onWindowResize();
+    });
+
+    closeBtn.addEventListener("click", () => {
+      if (nav.classList.contains("hidden")) {
+        root.style.setProperty("--navWidth", "3rem");
+      } else {
+        root.style.setProperty("--navWidth", "0rem");
+      }
+      nav.classList.toggle("hidden");
+      logo.classList.toggle("hidden");
+      onWindowResize();
+    });
     // if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
     document.addEventListener("mousemove", onDocumentMouseMove, false);
     window.addEventListener("deviceorientation", handleOrientation);
     init();
     animate();
-    handleCommandLineMessage(introMessage);
+    createObserver();
   } else {
     const warning = WEBGL.getWebGLErrorMessage();
     document.getElementById("container").appendChild(warning);
@@ -93,6 +145,14 @@ function init() {
   dirLight.color.setHSL(0.1, 0.7, 0.5);
   scene.add(dirLight);
   const manager = new THREE.LoadingManager();
+  let root = document.documentElement;
+  manager.onLoad = function () {
+    const loadingScreen = document.getElementById("loader-wrap");
+    loadingScreen.classList.add("fade-out");
+    loadingScreen.addEventListener("transitionend", onTransitionEnd);
+    root.style.setProperty("--navZIndex", "1007");
+    root.style.setProperty("--mainDisplay", "initial");
+  };
   // Function to add the lens flare light
   var textureLoader = new THREE.TextureLoader();
   var textureFlare0 = textureLoader.load(flare1);

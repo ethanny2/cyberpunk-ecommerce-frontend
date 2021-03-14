@@ -1050,37 +1050,7 @@
  }
  
  
- #scanlines , .scanlines{
- /*  margin-top: 45px;
- */
- overflow: auto;
-  pointer-events:none;
-  background-image:url('http://dizin.x10.bz/images/crtlines.png'); 
-   position:absolute;
-   top:0;
-   left:0;
-   right:0;
-   height: auto;
-   min-height: 100%;
-   z-index:1000;
-   opacity:0.41;
-   animation-name: scrollthatshit;
-   animation-duration: 100s;
-   -webkit-animation-timing-function:linear;
-   animation-timing-function:linear;
-   animation-iteration-count: infinite;
- }
- @keyframes scrollthatshit {
-     0%   { left:0px; top:0px;background-position:0 0%;}
  
-     100% { left:0px; top:0px;background-position:0 500%;}
- }
- 
- 
- #section3 #scanlines{
- /*	padding-top: 10%;
- */
- }
  
  .video_container{
    height: 80%;
