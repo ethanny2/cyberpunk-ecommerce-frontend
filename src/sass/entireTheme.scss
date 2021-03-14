@@ -1155,32 +1155,7 @@
  }
  
  
- /* For cursor blinking*/
- #cmd,#cmd2{
-   padding: 5%;
- }
- 
- /*#cmd,#cmd2
- */
-    .block2,.block{
-   font-size: 80%;
-   position: absolute;
- /*	top:-10%;
- */  -webkit-animation-direction: normal;
-   -webkit-animation-duration: 1s;
-   -webkit-animation-iteration-count: infinite;
-   -webkit-animation-name: blink;
-   -webkit-animation-timing-function: ease;   
- }
- 
- @-webkit-keyframes 'blink' {
-     0% { opacity:0 }
-     25% { opacity:1 }
-     50% { opacity: 1 }
-     75% { opacity: 1 }
-     100% { opacity: 0 }
- }
- 
+
  
  
  /*Styling the product pages */

@@ -28,26 +28,38 @@ var mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 const downArrow = document.getElementById("down");
+const introMessage =
+  "Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change .";
 
 function handleOrientation(event) {
-  // var absolute = event.absolute;
   console.log("Device orentation changed");
-  // var alpha = event.alpha; //z-axis 0-360
   var beta = event.beta; // x-axis -180- 180
-  // var gamma = event.gamma; //y-axis -90 to 90
-  // mouseX = alpha * 3 * 0.3;
-  // if (gamma > 0) {
-  //   mouseX = -gamma * 0.25;
-  // } else {
-  //   mouseX = -gamma * 0.25;
-  // }
-  //80-100
-  // if (beta <= 100 && beta <= 80) {
-  // console.log({ beta }, camera.position.y);
-  // } else {
   console.log({ beta });
   mouseY = (beta * 5 - windowHalfY) * 0.3;
-  // }
+}
+
+function handleCommandLineMessage(msg) {
+  var allElements = document.getElementsByClassName("typing");
+  for (var j = 0; j < allElements.length; j++) {
+    var currentElementId = allElements[j].id;
+    var currentElementIdContent = msg;
+    var element = document.getElementById(currentElementId);
+    var devTypeText = currentElementIdContent;
+    // type code
+    var i = 0,
+      isTag,
+      text;
+    (function type() {
+      text = devTypeText.slice(0, ++i);
+      if (text === devTypeText) return;
+      element.innerHTML = text + `<span class='blinker'>&#32;</span>`;
+      var char = text.slice(-1);
+      if (char === "<") isTag = true;
+      if (char === ">") isTag = false;
+      if (isTag) return type();
+      setTimeout(type, 40);
+    })();
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -55,11 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
     document.addEventListener("mousemove", onDocumentMouseMove, false);
     window.addEventListener("deviceorientation", handleOrientation);
-    // downArrow.addEventListener("click", () => {
-    //   document.getElementById("video").scrollIntoView();
-    // });
     init();
     animate();
+    handleCommandLineMessage(introMessage);
   } else {
     const warning = WEBGL.getWebGLErrorMessage();
     document.getElementById("container").appendChild(warning);
@@ -72,13 +82,10 @@ function init() {
   container.id = "scene";
   const main = document.getElementsByTagName("main")[0];
   main.prepend(container);
-  // const nextPage = document.createElement("span");
-  // nextPage.className += "arrowbtn arrowbtn-down";
-  // container.appendChild(nextPage);
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.z = 50;
-  camera.position.y = 100;
-  camera.position.x = -30;
+  camera.position.y = 5;
+  camera.position.x = 3;
   scene = new THREE.Scene();
   clock = new THREE.Clock();
   const dirLight = new THREE.DirectionalLight(0xffffff, 0.05);
@@ -129,7 +136,6 @@ function init() {
   loader.load(
     worldModel,
     function (gltf) {
-      console.log({ gltf });
       gltf.scene.position.y = 0;
       gltf.scene.position.x = 3;
       gltf.scene.position.z = 11;
@@ -175,9 +181,9 @@ function init() {
   });
   for (var i = 0; i < 50; i++) {
     var mesh = new THREE.Mesh(geometry, material);
-    mesh.position.x = Math.random() * 10000 - 5000;
-    mesh.position.y = Math.random() * 10000 - 5000;
-    mesh.position.z = Math.random() * 10000 - 5000;
+    mesh.position.x = Math.random() * 5000 - 2500;
+    mesh.position.y = Math.random() * 5000 - 2500;
+    mesh.position.z = Math.random() * 5000 - 2500;
     mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 2 + 1;
     scene.add(mesh);
     spheres.push(mesh);

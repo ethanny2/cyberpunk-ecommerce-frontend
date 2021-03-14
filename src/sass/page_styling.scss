@@ -15,57 +15,6 @@ body {
   box-sizing: border-box;
 }
 
-/* The Overlay (background) */
-.overlay {
-  /* Height & width depends on how you want to reveal the overlay (see JS below) */
-  height: 100%;
-  width: 0;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  background-color: rgb(0, 0, 0); /* Black fallback color */
-  background-color: rgba(0, 0, 0, 0.9); /* Black w/opacity */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
-}
-
-/* Position the content inside the overlay */
-.overlay-content {
-  position: relative;
-  top: 10%; /* 25% from the top */
-  width: 100%; /* 100% width */
-  text-align: center; /* Centered text/links */
-  margin-top: 20px; /* 30px top margin to avoid conflict with the close button on smaller screens */
-}
-
-/* The navigation links inside the overlay */
-.overlay p,
-a {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 120%;
-  color: #818181;
-  display: block; /* Display block instead of inline */
-  transition: 0.3s; /* Transition effects on hover (color) */
-}
-
-/* When you mouse over the navigation links, change their color */
-.overlay p:hover,
-.overlay p:focus {
-  /*	cursor: pointer;
-*/
-  color: #f1f1f1;
-}
-
-/* Position the close button (top right corner) */
-.overlay .closebtn {
-  color: #818181;
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  font-size: 240%;
-}
 
 /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
 @media screen and (max-height: 450px) {
@@ -355,7 +304,7 @@ a {
   }
 }
 
-$btn-size:3rem;
+$btn-size: 3rem;
 $btn-arrowsize: $btn-size / 4;
 
 // Button colors
@@ -378,9 +327,9 @@ $btn-hover-border-color: white;
   color: $btn-color;
   cursor: pointer;
   line-height: $btn-size;
-	bottom:0;
-	text-align: center;
-	transform: translate(-50%, -50%);
+  bottom: 0;
+  text-align: center;
+  transform: translate(-50%, -50%);
   // margin-left: -($btn-size / 2);
   transition: all 0.25s ease-in-out;
   &:hover {
@@ -408,38 +357,95 @@ $btn-hover-border-color: white;
     transform: rotateZ(45deg);
   }
 }
-#scene{
-	width:100%;
-	display:inline-block;
-	canvas{
-		width:100%;
-	}
+#scene {
+  width: 100%;
+  display: inline-block;
+  canvas {
+    width: 100%;
+  }
 }
 
-html, body, canvas {
-
-	touch-action: auto;
-	
-	}
+html,
+body,
+canvas {
+  touch-action: auto;
+}
 main {
   // background: #191919;
   height: 100vh;
-	// width:100%;
-	max-width: 100%;
-	overflow-y: scroll;
-	overflow-x:hidden;
+  // width:100%;
+  max-width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   font-family: Montserrat, sans-serif;
-	position:relative;
+  position: relative;
   margin-left: 3rem;
-	display:flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 main section {
-	min-height:100vh;
-	// width:100%;
-	// display:none;
+  min-height: 110vh;
+}
+main section,
+footer {
+  padding: 1rem;
+  background-color: black;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  outline: 1px solid red;
+  width: 100%;
+  video {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 1002;
+  }
+}
+footer {
+  padding: 0.5rem;
+  height: auto;
+  .social {
+    a {
+      padding: 0;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #insta {
+      width: 95%;
+    }
+    img {
+      width: 45%;
+    }
+  }
+  .footnote {
+    color: rgb(182, 182, 182);
+    font-size: small;
+    padding: 0.5rem 0;
+		a{
+			color: rgb(253, 252, 252);
+		}
+  }
+}
+
+.blinker {
+  opacity: 1;
+  margin-bottom: -2px;
+  height: 15px;
+  border-left: 7px solid rgb(32, 187, 66);
+  animation: blinker 0.9s steps(2, start) infinite;
+}
+
+@keyframes blinker {
+  to {
+    visibility: hidden;
+  }
 }
 
 nav a {
@@ -453,7 +459,7 @@ nav a {
 nav {
   position: fixed;
   left: 0;
-  z-index: 50;
+  z-index: 10002;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -483,7 +489,7 @@ nav {
   }
 }
 
- h1 {
+h1 {
   color: #fff;
   font-size: 2rem;
   text-transform: uppercase;
