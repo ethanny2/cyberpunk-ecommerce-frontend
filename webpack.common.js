@@ -7,6 +7,8 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const index = path.resolve(__dirname, "./src/js/index.js");
 const three = path.resolve(__dirname, "./src/js/webgl_effects.js");
+const nav = path.resolve(__dirname, "./src/js/navFunction.js");
+
 const nodePath = path.resolve(__dirname, "./node_modules");
 const webpack = require("webpack");
 
@@ -31,7 +33,8 @@ module.exports = {
   },
   entry: {
     index,
-    three
+    three,
+    nav
   },
   output: {
     filename: "js/[name].bundle.js",
@@ -125,16 +128,24 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    }),
+    // new webpack.ProvidePlugin({
+    //   $: "jquery",
+    //   jQuery: "jquery"
+    // }),
     new HtmlWebpackPlugin({
       title: "Else If Clothing",
       filename: "index.html",
-      template: "./src/static/html/webgl_materials_cubemap_balls_reflection.html",
+      template: "./src/static/html/index.html",
       inject: "head",
       chunks: ["index", "three"],
+      minify: true
+    }),
+    new HtmlWebpackPlugin({
+      title: "Else If Clothing",
+      filename: "contact.html",
+      template: "./src/static/html/contact.html",
+      inject: "head",
+      chunks: ["index", "nav"],
       minify: true
     }),
     //Adds rel="preload" to fonts;

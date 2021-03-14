@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Elseif Clothing</title>
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="textures/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  </head>
+  <body>
+    <div id="scanlines"></div>
+    <div id="logo" class="hidden">
+      <img src="../images/Final_logo.png" alt="Logo" />
+    </div>
+    <nav>
+      <a href="/">
+        <img src="../images/Final_logo.png" alt="logo" />
+      </a>
+      <a href="#shop">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+          />
+        </svg>
+      </a>
+      <a href="#cart">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      </a>
+      <a href="/contact.html">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          />
+        </svg>
+      </a>
+      <a href="#checkout">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      </a>
+      <a href="#" id="closeMenu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </a>
+    </nav>
+    <main>
+      <section id="contact">
+        <h1>Contact</h1>
+        <form method="post" action="/contact">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" placeholder="Name" required />
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" placeholder="Email" required />
+          <label for="subject">Subject</label>
+          <input type="text" name="subject" id="subject" placeholder="Subject" required />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <button class="confirm_button" type="submit" name="submit" title="Send us an email">Send</button>
+        </form>
+      </section>
+      <footer>
+        <div class="social">
+          <a href="https://github.com/ethanny2" rel="noopener">
+            <img src="../images/github.png" alt="Github logo" />
+          </a>
+          <a href="https://twitter.com/ArrayLikeObj" rel="noopener">
+            <img src="../images/twitter.png" alt="Twitter logo" />
+          </a>
+          <a href="https://www.instagram.com/elseifclothing/" rel="noopener">
+            <img id="insta" src="../images/instagram-resized.png" alt="Instagram logo" />
+          </a>
+        </div>
+        <p>Ethan Soo Hon</p>
+        <p class="footnote">
+          &copy; Else If Clothing 2016 - 2021 All rights reserved. Powered by
+          <a href="https://threejs.org/" rel="noopener">Threejs.</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

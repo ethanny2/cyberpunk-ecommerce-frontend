@@ -305,7 +305,6 @@ body {
 :root {
   --navWidth: 3rem;
   --navZIndex: 1000;
-  --mainDisplay: hidden;
 }
 #scene {
   width: 100%;
@@ -321,7 +320,7 @@ canvas {
   touch-action: auto;
 }
 main {
-  // background: #191919;
+  background:black;
   height: 100vh;
   // width:100%;
   max-width: 100%;
@@ -334,7 +333,9 @@ main {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  visibility: var(--mainDisplay);
+  &.hidden{
+    visibility: hidden;
+  }
 }
 main section {
   min-height: 110vh;
@@ -349,7 +350,7 @@ footer {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  outline: 1px solid red;
+  // outline: 1px solid red;
   width: 100%;
   video {
     width: 100%;
@@ -418,11 +419,14 @@ nav {
   background: #504d4d;
   width: var(--navWidth);
   border-right: 1px solid #181818a8;
-  transition: opacity 0.6s ease-out, width 0.6s ease-out;
+  transition: opacity 0.3s ease-out, width 0.3s ease-out;
   &.hidden {
     opacity: 0;
+    pointer-events: none;
   }
 }
+
+
 
 #logo {
   width: 6rem;
@@ -433,7 +437,7 @@ nav {
   }
   position: absolute;
   top: 0;
-  left: 0;
+  left: -1.4rem;
   z-index: 1006;
   opacity: 1;
   &.hidden {
@@ -495,6 +499,34 @@ nav {
   }
 }
 
+#contact {
+  form{
+    background-image: url(../static/images/computer_border.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
+    overflow:auto;
+    padding: 3rem 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    label{
+      margin: 0.6rem 0;
+    }
+    button{
+      font-size:medium;
+      padding:0.4rem;
+      margin: 0.6rem 0;
+    }
+  }
+  h1{
+    padding:1rem;
+  }
+  padding:0;
+}
 .loader {
   z-index: 1003;
   $loader-size: 8;

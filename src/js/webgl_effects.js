@@ -14,6 +14,7 @@ import skyboxUp from "../static/images/skyboxes/ame_nebula/purplenebula_up.png";
 import skyboxDown from "../static/images/skyboxes/ame_nebula/purplenebula_dn.png";
 import skyboxRight from "../static/images/skyboxes/ame_nebula/purplenebula_rt.png";
 import skyboxLeft from "../static/images/skyboxes/ame_nebula/purplenebula_lf.png";
+import { registerNavEvent } from "../js/index";
 const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
 // Initiate function or other initializations here
 var container;
@@ -73,7 +74,6 @@ function createObserver() {
     rootMargin: "0px",
     threshold: [0.5]
   };
-
   observer = new IntersectionObserver(handleIntersect, options);
   observer.observe(cmd);
 }
@@ -85,43 +85,18 @@ function handleIntersect(entries, observer) {
       handleCommandLineMessage(introMessage);
       // Only happens once
       observer.unobserve(cmd);
-      console.log("TERMINAL IN VIEW");
     }
   });
 }
 document.addEventListener("DOMContentLoaded", () => {
-  let root = document.documentElement;
   if (WEBGL.isWebGLAvailable()) {
-    const closeBtn = document.getElementById("closeMenu");
-    const nav = document.getElementsByTagName("nav")[0];
-    const logo = document.getElementById("logo");
-    logo.addEventListener("click", () => {
-      if (nav.classList.contains("hidden")) {
-        root.style.setProperty("--navWidth", "3rem");
-      } else {
-        root.style.setProperty("--navWidth", "0rem");
-      }
-      nav.classList.toggle("hidden");
-      logo.classList.toggle("hidden");
-      onWindowResize();
-    });
-
-    closeBtn.addEventListener("click", () => {
-      if (nav.classList.contains("hidden")) {
-        root.style.setProperty("--navWidth", "3rem");
-      } else {
-        root.style.setProperty("--navWidth", "0rem");
-      }
-      nav.classList.toggle("hidden");
-      logo.classList.toggle("hidden");
-      onWindowResize();
-    });
     // if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
     document.addEventListener("mousemove", onDocumentMouseMove, false);
     window.addEventListener("deviceorientation", handleOrientation);
+    registerNavEvent(onWindowResize);
+    createObserver();
     init();
     animate();
-    createObserver();
   } else {
     const warning = WEBGL.getWebGLErrorMessage();
     document.getElementById("container").appendChild(warning);
@@ -151,7 +126,7 @@ function init() {
     loadingScreen.classList.add("fade-out");
     loadingScreen.addEventListener("transitionend", onTransitionEnd);
     root.style.setProperty("--navZIndex", "1007");
-    root.style.setProperty("--mainDisplay", "initial");
+    document.getElementsByTagName("main")[0].classList.remove("hidden");
   };
   // Function to add the lens flare light
   var textureLoader = new THREE.TextureLoader();
@@ -271,13 +246,6 @@ function onDocumentMouseMove(event) {
   //Camera control on mouse move events
   mouseX = (event.clientX - windowHalfX) * 0.05;
   mouseY = (event.clientY - windowHalfY) * 0.05;
-}
-function onMobileTouchMove(event) {
-  console.log("Mobile touch event");
-  //Camera control on mouse move event
-  console.log({ event });
-  mouseX = (event.touches[0].clientX - windowHalfX) * 0.05;
-  mouseY = (event.touches[0].clientY - windowHalfY) * 0.05;
 }
 
 function isTouchEnabled() {
