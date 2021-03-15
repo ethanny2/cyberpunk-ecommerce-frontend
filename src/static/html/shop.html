@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Elseif Clothing</title>
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="textures/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  </head>
+  <body>
+    <div id="scanlines"></div>
+    <div id="logo" class="hidden">
+      <img src="../images/Final_logo.png" alt="Logo" />
+    </div>
+    <nav>
+      <a href="/">
+        <img src="../images/Final_logo.png" alt="logo" />
+      </a>
+      <a href="/shop.html">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+          />
+        </svg>
+      </a>
+      <a href="#cart">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      </a>
+      <a href="/contact.html">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          />
+        </svg>
+      </a>
+      <a href="#" id="closeMenu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </a>
+    </nav>
+    <main>
+      <section id="shop">
+        <div class="SPA active" id="shop-main">
+          <h1>Shop</h1>
+          <ol id="products">
+            <li class="product">
+              <a class="SPA-link" href="javascript:;" data-name="shop-shirt1">
+                <img alt="Chucky Carti Shirt" src="../images/shirt1_chucky.png" />
+              </a>
+              <b>Carti "Child's Play"</b>
+              <br />
+              <i>$40.00</i>
+              <br />
+            </li>
+            <li class="product">
+              <a class="SPA-link" href="javascript:;" data-name="shop-shirt2">
+                <img alt="Playboi Carti hand drawn tee" src="../images/shirt2_white.png" />
+              </a>
+              <b>Mirror AWGE</b>
+              <br />
+              <i>$30.00</i>
+              <br />
+            </li>
+          </ol>
+        </div>
+
+        <div class="SPA" id="shop-shirt2">
+          <h1>Mirror AWGE</h1>
+          <figure class="product">
+            <a class="SPA-link" href="javascript:;" data-name="shop-shirt2">
+              <img alt="Playboi Carti hand drawn tee" src="../images/shirt2_white.png" />
+            </a>
+            <figcaption>Mirror AWGE</figcaption>
+            <br />
+            <i>$30.00</i>
+            <br />
+            <div class="product--actions">
+              <div>
+                <button class="home">Home</button>
+                <button>Add To Cart</button>
+              </div>
+              <label for="size">Size</label>
+              <select name="size" id="size">
+                <option value="xs">XS</option>
+                <option value="sm">SM</option>
+                <option value="md">MD</option>
+                <option value="lg">LG</option>
+                <option value="xl">XL</option>
+              </select>
+            </div>
+          </figure>
+        </div>
+
+        <div class="SPA" id="shop-shirt1">
+          <h1>Carti "Child's Play"</h1>
+          <figure class="product">
+            <a class="SPA-link" href="javascript:;" data-name="shop-shirt1">
+              <img alt="Chucky Carti Shirt" src="../images/shirt1_chucky.png" />
+            </a>
+            <figcaption>Carti "Child's Play"</figcaption>
+            <br />
+            <i>$40.00</i>
+            <br />
+            <div class="product--actions">
+              <button class="home">Home</button>
+              <button>Add To Cart</button>
+              <select name="size" id="size">
+                <option value="xs">XS</option>
+                <option value="sm">SM</option>
+                <option value="md">MD</option>
+                <option value="lg">LG</option>
+                <option value="xl">XL</option>
+              </select>
+            </div>
+          </figure>
+        </div>
+
+        <footer>
+          <div class="social">
+            <a href="https://github.com/ethanny2" rel="noopener">
+              <img src="../images/github.png" alt="Github logo" />
+            </a>
+            <a href="https://twitter.com/ArrayLikeObj" rel="noopener">
+              <img src="../images/twitter.png" alt="Twitter logo" />
+            </a>
+            <a href="https://www.instagram.com/elseifclothing/" rel="noopener">
+              <img id="insta" src="../images/instagram-resized.png" alt="Instagram logo" />
+            </a>
+          </div>
+          <p>Ethan Soo Hon</p>
+          <p class="footnote">
+            &copy; Else If Clothing 2016 - 2021 All rights reserved. Powered by
+            <a href="https://threejs.org/" rel="noopener">Threejs.</a>
+          </p>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

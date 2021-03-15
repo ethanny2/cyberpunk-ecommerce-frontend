@@ -8,6 +8,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const index = path.resolve(__dirname, "./src/js/index.js");
 const three = path.resolve(__dirname, "./src/js/webgl_effects.js");
 const nav = path.resolve(__dirname, "./src/js/navFunction.js");
+const shop = path.resolve(__dirname, "./src/js/shop.js");
 
 const nodePath = path.resolve(__dirname, "./node_modules");
 const webpack = require("webpack");
@@ -34,7 +35,8 @@ module.exports = {
   entry: {
     index,
     three,
-    nav
+    nav,
+    shop
   },
   output: {
     filename: "js/[name].bundle.js",
@@ -146,6 +148,14 @@ module.exports = {
       template: "./src/static/html/contact.html",
       inject: "head",
       chunks: ["index", "nav"],
+      minify: true
+    }),
+     new HtmlWebpackPlugin({
+      title: "Else If Clothing",
+      filename: "shop.html",
+      template: "./src/static/html/shop.html",
+      inject: "head",
+      chunks: ["index", "nav", "shop"],
       minify: true
     }),
     //Adds rel="preload" to fonts;
