@@ -1,58 +1,26 @@
-// import shirt1 from "../static/images/shirt1_chucky.png";
-// import shirt2 from "../static/images/shirt2_white.png";
-// const pagesData = [
-//   `     <div class="SPA active" id="shop-shirt1">
-// <h1>Carti "Child's Play"</h1>
-// <figure class="product">
-//   <a class="SPA-link" href="javascript:;" data-name="shop-shirt1">
-//     <img alt="Chucky Carti Shirt" src="${shirt1}" />
-//   </a>
-//   <figcaption>Carti "Child's Play"</figcaption>
-//   <br />
-//   <i>$40.00</i>
-//   <br />
-//   <div class="product--actions">
-//     <button>Add To Cart</button>
-//     <label for="size">Size</label>
-//     <select name="size" id="size">
-//       <option value="xs">XS</option>
-//       <option value="sm">SM</option>
-//       <option value="md">MD</option>
-//       <option value="lg">LG</option>
-//       <option value="xl">XL</option>
-//     </select>
-//   </div>
-// </figure>
-// </div>`,
-//   `
-// <div class="SPA active" id="shop-shirt2">
-//   <h1>Mirror AWGE</h1>
-//   <figure class="product">
-//     <a class="SPA-link" href="javascript:;" data-name="shop-shirt2">
-//       <img alt="Playboi Carti hand drawn tee" src="${shirt2}" />
-//     </a>
-//     <figcaption>Mirror AWGE</figcaption>
-//     <br />
-//     <i>$30.00</i>
-//     <br />
-//     <div class="product--actions">
-//       <button>Add To Cart</button>
-//       <label for="size">Size</label>
-//       <select name="size" id="size">
-//         <option value="xs">XS</option>
-//         <option value="sm">SM</option>
-//         <option value="md">MD</option>
-//         <option value="lg">LG</option>
-//         <option value="xl">XL</option>
-//       </select>
-//     </div>
-//   </figure>
-// </div>`
-// ];
+import shirt1 from "../static/images/shirt1_chucky.png";
+import shirt2 from "../static/images/shirt2_white.png";
+import { addToCart, fetchCart, updateCartDisplay } from "./cart";
 
+const products = {
+  "shop-shirt1": {
+    imageUrl: shirt1,
+    price: 40,
+    name: `Carti "Child's Play"`
+  },
+  "shop-shirt2": {
+    imageUrl: shirt2,
+    price: 30,
+    name: `Mirror AWGE`
+  }
+};
 document.addEventListener("DOMContentLoaded", () => {
   const pages = document.getElementsByClassName("SPA");
   const homeBtn = document.getElementsByClassName("home");
+  const addToCartBtns = document.getElementsByClassName("addCart");
+  for (let i = 0; i < addToCartBtns.length; i++) {
+    addToCartBtns[i].addEventListener("click", findProductName);
+  }
   for (let i = 0; i < homeBtn.length; i++) {
     homeBtn[i].addEventListener("click", navigateHomePage);
   }
@@ -72,6 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+function findProductName(e) {
+  const product = products[e.target.parentNode.parentNode.parentNode.children[0].dataset.name];
+  const size = e.target.parentNode.parentNode.children[1].value;
+  product.size = size;
+  addToCart(product);
+  console.log(fetchCart());
+  updateCartDisplay();
+}
+
 function removeAllActive(pages) {
   for (let i = 0; i < pages.length; i++) {
     pages[i].classList.remove("active");
@@ -84,4 +61,5 @@ function navigateHomePage() {
   const homePage = document.getElementById("shop-main");
   console.log({ homePage });
   homePage.classList.add("active");
+  homePage.scrollIntoView();
 }

@@ -558,6 +558,7 @@ nav {
     margin: 0;
   }
   .product {
+    -webkit-tap-highlight-color: transparent;
     &:hover {
       cursor: pointer;
     }
@@ -583,13 +584,13 @@ nav {
   height:0;
   width:0;
   position: absolute;
-  transition: opacity ease-in 0.5s;
+  transition: opacity ease 0.5s;
   display:flex;
   visibility: hidden;
   &.active {
     position:relative;
     visibility: initial;
-    transition: opacity ease-in 0.6s;
+    transition: opacity ease 0.5s;
     // animation: 2s fadeIn forwards;
     margin-left:0;
     opacity: 1;
@@ -609,6 +610,30 @@ nav {
     // width:100%;
   }
 }
+
+/*Badge for number of products in cart */
+.badge {
+  padding-left: 7px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px; 
+    margin-bottom:20px;
+}
+
 
 .loader {
   z-index: 1003;

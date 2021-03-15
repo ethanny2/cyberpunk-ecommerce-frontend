@@ -15,6 +15,7 @@ import skyboxDown from "../static/images/skyboxes/ame_nebula/purplenebula_dn.png
 import skyboxRight from "../static/images/skyboxes/ame_nebula/purplenebula_rt.png";
 import skyboxLeft from "../static/images/skyboxes/ame_nebula/purplenebula_lf.png";
 import { registerNavEvent } from "../js/index";
+import { updateCartDisplay } from "./cart";
 const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
 // Initiate function or other initializations here
 var container;
@@ -90,6 +91,7 @@ function handleIntersect(entries, observer) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   if (WEBGL.isWebGLAvailable()) {
+    updateCartDisplay();
     // if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
     document.addEventListener("mousemove", onDocumentMouseMove, false);
     window.addEventListener("deviceorientation", handleOrientation);
