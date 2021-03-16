@@ -14,7 +14,7 @@ import skyboxUp from "../static/images/skyboxes/ame_nebula/purplenebula_up.png";
 import skyboxDown from "../static/images/skyboxes/ame_nebula/purplenebula_dn.png";
 import skyboxRight from "../static/images/skyboxes/ame_nebula/purplenebula_rt.png";
 import skyboxLeft from "../static/images/skyboxes/ame_nebula/purplenebula_lf.png";
-import { registerNavEvent } from "../js/index";
+import { registerNavEvent, handleCommandLineMessage } from "../js/index";
 import { updateCartDisplay } from "./cart";
 const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
 // Initiate function or other initializations here
@@ -39,29 +39,29 @@ function handleOrientation(event) {
   mouseY = (beta * 5 - windowHalfY) * 0.3;
 }
 
-function handleCommandLineMessage(msg) {
-  var allElements = document.getElementsByClassName("typing");
-  for (var j = 0; j < allElements.length; j++) {
-    var currentElementId = allElements[j].id;
-    var currentElementIdContent = msg;
-    var element = document.getElementById(currentElementId);
-    var devTypeText = currentElementIdContent;
-    // type code
-    var i = 0,
-      isTag,
-      text;
-    (function type() {
-      text = devTypeText.slice(0, ++i);
-      if (text === devTypeText) return;
-      element.innerHTML = text + `<span class='blinker'>&#32;</span>`;
-      var char = text.slice(-1);
-      if (char === "<") isTag = true;
-      if (char === ">") isTag = false;
-      if (isTag) return type();
-      setTimeout(type, 40);
-    })();
-  }
-}
+// function handleCommandLineMessage(msg) {
+//   var allElements = document.getElementsByClassName("typing");
+//   for (var j = 0; j < allElements.length; j++) {
+//     var currentElementId = allElements[j].id;
+//     var currentElementIdContent = msg;
+//     var element = document.getElementById(currentElementId);
+//     var devTypeText = currentElementIdContent;
+//     // type code
+//     var i = 0,
+//       isTag,
+//       text;
+//     (function type() {
+//       text = devTypeText.slice(0, ++i);
+//       if (text === devTypeText) return;
+//       element.innerHTML = text + `<span class='blinker'>&#32;</span>`;
+//       var char = text.slice(-1);
+//       if (char === "<") isTag = true;
+//       if (char === ">") isTag = false;
+//       if (isTag) return type();
+//       setTimeout(type, 40);
+//     })();
+//   }
+// }
 
 function onTransitionEnd(event) {
   event.target.remove();
@@ -89,6 +89,7 @@ function handleIntersect(entries, observer) {
     }
   });
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   if (WEBGL.isWebGLAvailable()) {
     updateCartDisplay();

@@ -10,12 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log({ stripe });
   checkout.addEventListener("click", async () => {
     const lineItems = fetchCart().products.map((item) => ({ price: String(item.productId), quantity: item.quantity }));
-    alert("Stripe checkout goes here!");
     const response = await stripe.redirectToCheckout({
       mode: "payment",
       lineItems,
-      successUrl: "https://www.google.com/",
-      cancelUrl: "https://www.bing.com/"
+      successUrl: "http://localhost:9000/success.html",
+      cancelUrl: "http://localhost:9000/failure.html"
     });
     console.log(response);
   });

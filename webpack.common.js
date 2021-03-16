@@ -10,6 +10,8 @@ const three = path.resolve(__dirname, "./src/js/webgl_effects.js");
 const nav = path.resolve(__dirname, "./src/js/navFunction.js");
 const shop = path.resolve(__dirname, "./src/js/shop.js");
 const cart = path.resolve(__dirname, "./src/js/cartPage.js");
+const success = path.resolve(__dirname, "./src/js/success.js");
+const failure = path.resolve(__dirname, "./src/js/failure.js");
 
 const nodePath = path.resolve(__dirname, "./node_modules");
 const webpack = require("webpack");
@@ -38,7 +40,9 @@ module.exports = {
     three,
     nav,
     shop,
-    cart
+    cart,
+    success,
+    failure
   },
   output: {
     filename: "js/[name].bundle.js",
@@ -166,6 +170,22 @@ module.exports = {
       template: "./src/static/html/cart.html",
       inject: "head",
       chunks: ["index", "nav", "cart"],
+      minify: true
+    }),
+    new HtmlWebpackPlugin({
+      title: "Else If Clothing Success",
+      filename: "success.html",
+      template: "./src/static/html/success.html",
+      inject: "head",
+      chunks: ["index", "nav", "success"],
+      minify: true
+    }),
+    new HtmlWebpackPlugin({
+      title: "Else If Clothing Failure",
+      filename: "failure.html",
+      template: "./src/static/html/failure.html",
+      inject: "head",
+      chunks: ["index", "nav", "failure"],
       minify: true
     }),
     //Adds rel="preload" to fonts;
