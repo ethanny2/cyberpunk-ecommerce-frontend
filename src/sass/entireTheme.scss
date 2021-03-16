@@ -969,28 +969,7 @@
       */
      animation-delay: .4s;
  }
- 
- .checkout{
-   position:absolute;
-   top:0;
-     left:0;
-     right:0;
-   min-height: 100%;
-   width: 100%;
-   font-size: 230%;
-   background-color: black;
-   opacity: 0.95;
-   color: #55ff55;
-   font-family: monospace;
-   padding-top: 20%;
-   text-align: center;	
- }
- 
- .checkout p{
-   margin-top: 10%;
-   font-size: 230%;
- 
- }
+
  
  
  /* */
@@ -1364,10 +1343,7 @@
    body#cart form li img{
      width: 10%;
    }
-   .checkout p{
-   margin-top: 5%;
-   font-size: 230%;
-   }
+
    form input, form textarea{
      width: 40%;
    }

@@ -338,7 +338,7 @@ main {
   }
 }
 main section {
-  min-height: 110vh;
+  // min-height: 110vh;
 }
 main section,
 footer {
@@ -497,6 +497,40 @@ nav {
   }
 }
 
+#cart {
+  #cart-contents {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.9rem;
+    .total{
+      margin: 0.5rem 0;
+    }
+  }
+  .cart-item {
+    border-top: honeydew 1px solid;
+    border-bottom: honeydew 1px solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    p,
+    button {
+      margin: 0.5rem 0;
+    }
+    p {
+      flex-basis: 100%;
+    }
+    img {
+      width: 40%;
+      flex-basis: 100%;
+      margin: 0.6rem 0;
+    }
+  }
+}
+
 #contact {
   form {
     background-image: url(../static/images/computer_border.png);
@@ -526,19 +560,19 @@ nav {
   padding: 0;
 }
 
-.product--actions{
-  display:flex;
-    flex-direction: column;
-    justify-content: center;
-    width:40%;
-    button{
-      padding: 0.3rem;
-      margin: 1rem 0;
-      font-size:small;
-    }
-    select{
-      margin: 1rem 0;      
-    }
+.product--actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  button {
+    padding: 0.3rem;
+    margin: 1rem 0;
+    font-size: small;
+  }
+  select {
+    margin: 1rem 0;
+  }
 }
 
 #shop {
@@ -563,7 +597,7 @@ nav {
       cursor: pointer;
     }
     flex: 1 1 auto;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -581,28 +615,28 @@ nav {
 /* SPA like effect for product details*/
 .SPA {
   opacity: 0;
-  height:0;
-  width:0;
+  height: 0;
+  width: 0;
   position: absolute;
   transition: opacity ease 0.5s;
-  display:flex;
+  display: flex;
   visibility: hidden;
   &.active {
-    position:relative;
+    position: relative;
     visibility: initial;
     transition: opacity ease 0.5s;
     // animation: 2s fadeIn forwards;
-    margin-left:0;
+    margin-left: 0;
     opacity: 1;
     width: 100%;
-    height:auto;
-    display:block;
+    height: auto;
+    display: block;
   }
-  z-index:10;
+  z-index: 10;
 }
 
 @keyframes fadeIn {
-  0%{
+  0% {
     display: block;
   }
   100% {
@@ -625,15 +659,14 @@ nav {
   background-color: #c67605;
 }
 #lblCartCount {
-    font-size: 12px;
-    background: #ff0000;
-    color: #fff;
-    padding: 0 5px;
-    vertical-align: top;
-    margin-left: -10px; 
-    margin-bottom:20px;
+  font-size: 12px;
+  background: #ff0000;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
+  margin-bottom: 20px;
 }
-
 
 .loader {
   z-index: 1003;

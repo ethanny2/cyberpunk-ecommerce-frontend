@@ -44,7 +44,7 @@ export function removeFromCart(removeProduct) {
     if (foundItem.quantity === 1) {
       cart.products.splice(foundIndex, 1);
     } else {
-      foundItem.quantity++;
+      foundItem.quantity--;
     }
     updateCart(cart);
   }

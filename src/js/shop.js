@@ -6,12 +6,14 @@ const products = {
   "shop-shirt1": {
     imageUrl: shirt1,
     price: 40,
-    name: `Carti "Child's Play"`
+    name: `Carti Child's Play`,
+    productId: "price_1IVTPQCRgr8XtIukFtECP5E8"
   },
   "shop-shirt2": {
     imageUrl: shirt2,
     price: 30,
-    name: `Mirror AWGE`
+    name: `Mirror AWGE`,
+    productId: "price_1IVTPjCRgr8XtIukFdV9P92i"
   }
 };
 document.addEventListener("DOMContentLoaded", () => {
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function findProductName(e) {
   const product = products[e.target.parentNode.parentNode.parentNode.children[0].dataset.name];
-  const size = e.target.parentNode.parentNode.children[1].value;
+  const size = e.target.parentNode.parentNode.children[2].value;
   product.size = size;
   addToCart(product);
   console.log(fetchCart());

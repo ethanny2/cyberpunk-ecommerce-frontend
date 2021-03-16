@@ -9,6 +9,7 @@ const index = path.resolve(__dirname, "./src/js/index.js");
 const three = path.resolve(__dirname, "./src/js/webgl_effects.js");
 const nav = path.resolve(__dirname, "./src/js/navFunction.js");
 const shop = path.resolve(__dirname, "./src/js/shop.js");
+const cart = path.resolve(__dirname, "./src/js/cartPage.js");
 
 const nodePath = path.resolve(__dirname, "./node_modules");
 const webpack = require("webpack");
@@ -36,7 +37,8 @@ module.exports = {
     index,
     three,
     nav,
-    shop
+    shop,
+    cart
   },
   output: {
     filename: "js/[name].bundle.js",
@@ -143,19 +145,27 @@ module.exports = {
       minify: true
     }),
     new HtmlWebpackPlugin({
-      title: "Else If Clothing",
+      title: "Else If Clothing Contact",
       filename: "contact.html",
       template: "./src/static/html/contact.html",
       inject: "head",
       chunks: ["index", "nav"],
       minify: true
     }),
-     new HtmlWebpackPlugin({
-      title: "Else If Clothing",
+    new HtmlWebpackPlugin({
+      title: "Else If Clothing Shop",
       filename: "shop.html",
       template: "./src/static/html/shop.html",
       inject: "head",
       chunks: ["index", "nav", "shop"],
+      minify: true
+    }),
+    new HtmlWebpackPlugin({
+      title: "Else If Clothing Cart",
+      filename: "cart.html",
+      template: "./src/static/html/cart.html",
+      inject: "head",
+      chunks: ["index", "nav", "cart"],
       minify: true
     }),
     //Adds rel="preload" to fonts;
