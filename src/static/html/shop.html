@@ -3,27 +3,46 @@
   <head>
     <title>Elseif Clothing</title>
     <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="textures/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
-    <link
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
+    <link rel="apple-touch-icon" sizes="57x57" href="../images/favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="../images/favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../images/favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../images/favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../images/favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../images/favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../images/favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="../images/favicons/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="../images/favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Else If's main shop page; A Cyberpunk inspired clothing brand." />
   </head>
   <body>
     <div id="scanlines"></div>
-    <div id="logo" class="hidden">
-      <img src="../images/Final_logo.png" alt="Logo" />
+    <div id="logo" class="hidden" aria-label="Home">
+      <picture>
+        <source srcset="../images/resized-Final_logo.webp" type="image/webp" />
+        <source srcset="../images/resized-Final_logo.png" type="image/png" />
+        <img alt="Logo" src="../images/resized-Final_logo.png" />
+      </picture>
     </div>
     <nav>
-      <a href="/">
-        <img src="../images/Final_logo.png" alt="logo" />
+      <a href="/" aria-label="Home">
+        <picture>
+          <source srcset="../images/resized-Final_logo.webp" type="image/webp" />
+          <source srcset="../images/resized-Final_logo.png" type="image/png" />
+          <img alt="Logo" src="../images/resized-Final_logo.png" />
+        </picture>
       </a>
-      <a href="/shop.html">
+      <a href="/shop.html" aria-label="Shop">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             stroke-linecap="round"
@@ -33,7 +52,7 @@
           />
         </svg>
       </a>
-      <a href="/cart.html">
+      <a href="/cart.html" aria-label="Cart">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             stroke-linecap="round"
@@ -44,7 +63,7 @@
         </svg>
         <span class="badge badge-warning" id="lblCartCount"> </span>
       </a>
-      <a href="/contact.html">
+      <a href="/contact.html" aria-label="Contact">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             stroke-linecap="round"
@@ -54,7 +73,7 @@
           />
         </svg>
       </a>
-      <a href="#" id="closeMenu">
+      <a href="#" id="closeMenu" aria-label="Close-Menu">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             stroke-linecap="round"
@@ -72,7 +91,11 @@
           <ol id="products">
             <li class="product">
               <a class="SPA-link" href="javascript:;" data-name="shop-shirt1">
-                <img alt="Chucky Carti Shirt" src="../images/shirt1_chucky.png" />
+                <picture>
+                  <source srcset="../images/resized-shirt1_chucky.webp" type="image/webp" />
+                  <source srcset="../images/resized-shirt1_chucky.png" type="image/png" />
+                  <img alt="Chucky Carti Shirt" src="../images/resized-shirt1_chucky.png" />
+                </picture>
               </a>
               <b>Carti "Child's Play"</b>
               <br />
@@ -81,7 +104,11 @@
             </li>
             <li class="product">
               <a class="SPA-link" href="javascript:;" data-name="shop-shirt2">
-                <img alt="Playboi Carti hand drawn tee" src="../images/shirt2_white.png" />
+                <picture>
+                  <source srcset="../images/resized-shirt2_white.webp" type="image/webp" />
+                  <source srcset="../images/resized-shirt2_white.png" type="image/png" />
+                  <img alt="Playboi Carti hand drawn tee" src="../images/resized-shirt2_white.png" />
+                </picture>
               </a>
               <b>Mirror AWGE</b>
               <br />
@@ -95,7 +122,11 @@
           <h1>Mirror AWGE</h1>
           <figure class="product">
             <a class="SPA-link" href="javascript:;" data-name="shop-shirt2">
-              <img alt="Playboi Carti hand drawn tee" src="../images/shirt2_white.png" />
+              <picture>
+                <source srcset="../images/resized-shirt2_white.webp" type="image/webp" />
+                <source srcset="../images/resized-shirt2_white.png" type="image/png" />
+                <img alt="Playboi Carti hand drawn tee" src="../images/resized-shirt2_white.png" />
+              </picture>
             </a>
             <figcaption>Mirror AWGE</figcaption>
             <br />
@@ -107,7 +138,7 @@
                 <button class="addCart">Add To Cart</button>
               </div>
               <label for="size">Size</label>
-              <select name="size" id="size">
+              <select name="size" class="size">
                 <option value="xs">XS</option>
                 <option value="sm">SM</option>
                 <option value="md">MD</option>
@@ -122,7 +153,11 @@
           <h1>Carti "Child's Play"</h1>
           <figure class="product">
             <a class="SPA-link" href="javascript:;" data-name="shop-shirt1">
-              <img alt="Chucky Carti Shirt" src="../images/shirt1_chucky.png" />
+              <picture>
+                <source srcset="../images/resized-shirt1_chucky.webp" type="image/webp" />
+                <source srcset="../images/resized-shirt1_chucky.png" type="image/png" />
+                <img alt="Chucky Carti Shirt" src="../images/resized-shirt1_chucky.png" />
+              </picture>
             </a>
             <figcaption>Carti "Child's Play"</figcaption>
             <br />
@@ -134,7 +169,7 @@
                 <button class="addCart">Add To Cart</button>
               </div>
               <label for="size">Size</label>
-              <select name="size" id="size">
+              <select name="size" class="size">
                 <option value="xs">XS</option>
                 <option value="sm">SM</option>
                 <option value="md">MD</option>
@@ -144,17 +179,28 @@
             </div>
           </figure>
         </div>
-
         <footer>
           <div class="social">
-            <a href="https://github.com/ethanny2" rel="noopener">
-              <img src="../images/github.png" alt="Github logo" />
+            <a href="https://github.com/ethanny2" rel="noopener" aria-label="Github">
+              <picture>
+                <source srcset="../images/github.webp" type="image/webp" />
+                <source srcset="../images/github.png" type="image/png" />
+                <img src="../images/github.png" alt="Github logo" />
+              </picture>
             </a>
-            <a href="https://twitter.com/ArrayLikeObj" rel="noopener">
-              <img src="../images/twitter.png" alt="Twitter logo" />
+            <a href="https://twitter.com/ArrayLikeObj" rel="noopener" aria-label="Twitter">
+              <picture>
+                <source srcset="../images/twitter.webp" type="image/webp" />
+                <source srcset="../images/twitter.png" type="image/png" />
+                <img src="../images/twitter.png" alt="Twitter logo" />
+              </picture>
             </a>
-            <a href="https://www.instagram.com/elseifclothing/" rel="noopener">
-              <img id="insta" src="../images/instagram-resized.png" alt="Instagram logo" />
+            <a href="https://www.instagram.com/elseifclothing/" rel="noopener" aria-label="Instagram">
+              <picture>
+                <source srcset="../images/instagram-resized.webp" type="image/webp" />
+                <source srcset="../images/instagram-resized.png" type="image/png" />
+                <img id="insta" src="../images/instagram-resized.png" alt="Instagram logo" />
+              </picture>
             </a>
           </div>
           <p>Ethan Soo Hon</p>

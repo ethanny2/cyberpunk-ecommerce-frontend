@@ -5,7 +5,7 @@ const imageminWebp = require("imagemin-webp");
 // Better to run as pre-build step
 (async () => {
   const img = await imagemin([path.resolve(__dirname, "src/static/images/*.{jpg,png}").replace(/\\/g, "/")], {
-    destination: path.resolve(__dirname, "src/static/images/").replace(/\\/g, "/"),
+    destination: path.resolve(__dirname, "src/static/images/webps").replace(/\\/g, "/"),
     plugins: [imageminWebp({ quality: 70 })]
   });
   console.log(img);

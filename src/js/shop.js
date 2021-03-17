@@ -1,16 +1,20 @@
-import shirt1 from "../static/images/shirt1_chucky.png";
-import shirt2 from "../static/images/shirt2_white.png";
+import shirt1png from "../static/images/resized-shirt1_chucky.png";
+import shirt1webp from "../static/images/resized-shirt1_chucky.webp";
+import shirt2png from "../static/images/resized-shirt2_white.png";
+import shirt2webp from "../static/images/resized-shirt2_white.webp";
 import { addToCart, fetchCart, updateCartDisplay } from "./cart";
 
 const products = {
   "shop-shirt1": {
-    imageUrl: shirt1,
+    pngUrl: shirt1png,
+    webpUrl: shirt1webp,
     price: 40,
     name: `Carti Child's Play`,
     productId: "price_1IVTPQCRgr8XtIukFtECP5E8"
   },
   "shop-shirt2": {
-    imageUrl: shirt2,
+    pngUrl: shirt2png,
+    webpUrl: shirt2webp,
     price: 30,
     name: `Mirror AWGE`,
     productId: "price_1IVTPjCRgr8XtIukFdV9P92i"

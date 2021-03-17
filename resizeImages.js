@@ -1,18 +1,17 @@
 const Jimp = require("jimp");
 const fs = require("fs");
 const path = require("path");
-const covers = path.join(__dirname, "src/static/images/covers");
+const covers = path.join(__dirname, "src/static/images/");
 const designs = path.join(__dirname, "src/static/images/designs");
 const posts = path.join(__dirname, "src/static/images/posts");
-const moveToCovers = path.join(__dirname, "src/static/images/resizedCovers");
-const moveToDesigns = path.join(__dirname, "src/static/images/resizedDesigns");
-const moveToPosts = path.join(__dirname, "src/static/images/resizedPosts");
+const moveToCovers = path.join(__dirname, "src/static/images/resizedImages");
+
 async function resize(imageType, imageUrl, fileName) {
   let width;
   let height;
   switch (imageType) {
     case "covers":
-      (width = 300), (height = Jimp.AUTO);
+      (width = 100), (height = Jimp.AUTO);
       break;
     case "designs":
       (width = 300), (height = Jimp.AUTO);
@@ -24,12 +23,12 @@ async function resize(imageType, imageUrl, fileName) {
       break;
   }
   const image = await Jimp.read(imageUrl);
-  const outputPath = path.join(moveToCovers, fileName);
+  const outputPath = path.join(moveToCovers, "resized-" + fileName);
   await image.resize(width, height);
   await image.writeAsync(outputPath);
 }
 
-// resize("cover", path.join(__dirname, "src/static/images/covers/2door.jpg"), "2door");
+resize("covers", path.join(__dirname, "src/static/images/Final_logo.png"), "Final_logo.png");
 
 // Make an async function that gets executed immediately
 async function resizeDirectory(folderPath, imageType) {
@@ -64,4 +63,4 @@ async function resizeDirectory(folderPath, imageType) {
   }
 }
 
-resizeDirectory(covers, "covers");
+// resizeDirectory(covers, "covers");

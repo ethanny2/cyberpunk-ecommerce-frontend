@@ -342,6 +342,7 @@ nav {
     font-size: 0.9rem;
     .total {
       margin: 0.5rem 0;
+      font-size:medium;
     }
   }
   .cart-item {
@@ -351,8 +352,8 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
     .remove {
-      color: rgb(255, 240, 240);
-      background: rgb(248, 64, 64);
+      color: rgb(255, 255, 255);
+      background: rgb(214, 27, 27);
       margin-left: 0.4rem;
     }
     p,
@@ -383,7 +384,7 @@ button {
 
 #contact {
   form {
-    background-image: url(../static/images/computer_border.png);
+    background-image: url(../static/images/resized-computer_border.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -642,6 +643,7 @@ h1 {
 }
 
 @media only screen and (min-width: 600px) {
+  
   #cart {
     padding: 0.8rem;
     .cart-item {
@@ -694,9 +696,13 @@ h1 {
     }
   }
   #shop {
+    .SPA-link{
+      width:60%;
+    }
     .product {
       img {
-        width: 70%;
+        width: 100%;
+
       }
     }
   }
@@ -704,6 +710,12 @@ h1 {
 
 /* At 1024px (laptop average size) and larger  */
 @media only screen and (min-width: 1024px) {
+  #shop{
+    .SPA-link{
+      width:40%;
+    }
+  }
+
   #contact {
     form {
       label,

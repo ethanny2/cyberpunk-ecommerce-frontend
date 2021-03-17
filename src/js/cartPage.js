@@ -47,6 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// pngUrl: shirt1png,
+// webpUrl: shirt1webp,
+
 function displayCartItems() {
   const container = document.getElementById("cart-contents");
   const cart = fetchCart();
@@ -57,11 +60,17 @@ function displayCartItems() {
     document.getElementsByTagName("main")[0].classList.add("full");
   } else {
     cart.products.forEach((item) => {
-      console.log({ item: item.name });
+      console.log({ item });
       container.innerHTML += `<div class="cart-item" data-price="${item.price}" data-size="${item.size}" data-name="${
         item.name
       }" data-quantity="${item.quantity}">
-      <div><img src=${item.imageUrl} alt="${item.name}" /></div>
+      <div>
+        <picture>
+          <source srcset="${item.webpUrl}" type="image/webp" />
+          <source srcset="${item.pngUrl}" type="image/png" />
+          <img src="${item.pngUrl}" alt="${item.name}" />
+        </picture>
+      </div>
       <p>Size: ${item.size}</p>
       <p>Price: $${item.price.toFixed(2)}</p>
       <p>Quantity: ${item.quantity}</p>
@@ -69,7 +78,7 @@ function displayCartItems() {
       <button class="remove">Remove One</button>
     </div>`;
     });
-    container.innerHTML += `<div><h3 class="total">Total $${getTotalPrice().toFixed(2)}</h3>`;
+    container.innerHTML += `<div><p class="total">Total $${getTotalPrice().toFixed(2)}</p>`;
     container.innerHTML += `<button id="checkout">Checkout</button></div>`;
   }
 }
