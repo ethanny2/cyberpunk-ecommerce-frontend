@@ -33,35 +33,11 @@ const introMessage =
   "Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change .";
 
 function handleOrientation(event) {
-  console.log("Device orentation changed");
+  // console.log("Device orentation changed");
   var beta = event.beta; // x-axis -180- 180
-  console.log({ beta });
+  // console.log({ beta });
   mouseY = (beta * 5 - windowHalfY) * 0.3;
 }
-
-// function handleCommandLineMessage(msg) {
-//   var allElements = document.getElementsByClassName("typing");
-//   for (var j = 0; j < allElements.length; j++) {
-//     var currentElementId = allElements[j].id;
-//     var currentElementIdContent = msg;
-//     var element = document.getElementById(currentElementId);
-//     var devTypeText = currentElementIdContent;
-//     // type code
-//     var i = 0,
-//       isTag,
-//       text;
-//     (function type() {
-//       text = devTypeText.slice(0, ++i);
-//       if (text === devTypeText) return;
-//       element.innerHTML = text + `<span class='blinker'>&#32;</span>`;
-//       var char = text.slice(-1);
-//       if (char === "<") isTag = true;
-//       if (char === ">") isTag = false;
-//       if (isTag) return type();
-//       setTimeout(type, 40);
-//     })();
-//   }
-// }
 
 function onTransitionEnd(event) {
   event.target.remove();
@@ -92,15 +68,18 @@ function handleIntersect(entries, observer) {
 
 document.addEventListener("DOMContentLoaded", () => {
   if (WEBGL.isWebGLAvailable()) {
+    console.log("DOM CONTENT LOADED");
     updateCartDisplay();
     // if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
     document.addEventListener("mousemove", onDocumentMouseMove, false);
-    window.addEventListener("deviceorientation", handleOrientation);
+    // window.addEventListener("deviceorientation", handleOrientation);
     registerNavEvent(onWindowResize);
     createObserver();
     init();
     animate();
+    document.getElementsByTagName("main")[0].classList.remove("hidden");
   } else {
+    console.log("NO WEBGL DETECTED");
     const warning = WEBGL.getWebGLErrorMessage();
     document.getElementById("container").appendChild(warning);
   }
@@ -108,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // animate();
 function init() {
+  console.log("Calling init()");
   container = document.createElement("div");
   container.id = "scene";
   const main = document.getElementsByTagName("main")[0];
@@ -123,14 +103,17 @@ function init() {
   dirLight.color.setHSL(0.1, 0.7, 0.5);
   scene.add(dirLight);
   const manager = new THREE.LoadingManager();
+  console.log({ manager });
   let root = document.documentElement;
-  manager.onLoad = function () {
-    const loadingScreen = document.getElementById("loader-wrap");
-    loadingScreen.classList.add("fade-out");
-    loadingScreen.addEventListener("transitionend", onTransitionEnd);
-    root.style.setProperty("--navZIndex", "1007");
-    document.getElementsByTagName("main")[0].classList.remove("hidden");
-  };
+  // manager.onLoad = function () {
+  //   console.log("CALLED ON LOAD");
+  //   // const loadingScreen = document.getElementById("loader-wrap");
+  //   // loadingScreen.classList.add("fade-out");
+  //   // loadingScreen.addEventListener("transitionend", onTransitionEnd);
+  //   root.style.setProperty("--navZIndex", "1007");
+  //   console.log(document.getElementsByTagName("main")[0]);
+  //   document.getElementsByTagName("main")[0].classList.remove("hidden");
+  // };
   // Function to add the lens flare light
   var textureLoader = new THREE.TextureLoader();
   var textureFlare0 = textureLoader.load(flare1);
@@ -167,8 +150,8 @@ function init() {
   // var ambient = new THREE.AmbientLight(0x444444);
   var ambientLight = new THREE.AmbientLight(0xcccccc);
   scene.add(ambientLight);
-  const loader = new GLTFLoader(manager);
-  const dracoLoader = new DRACOLoader(manager);
+  const loader = new GLTFLoader();
+  const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath(dracoDecodePath);
   loader.setDRACOLoader(dracoLoader);
   loader.load(

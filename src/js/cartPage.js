@@ -54,13 +54,14 @@ function displayCartItems() {
   if (cart.products.length <= 0) {
     console.log(cart.products.length);
     container.innerHTML += `<h2>No Items in Cart</h2>`;
+    document.getElementsByTagName("main")[0].classList.add("full");
   } else {
     cart.products.forEach((item) => {
       console.log({ item: item.name });
       container.innerHTML += `<div class="cart-item" data-price="${item.price}" data-size="${item.size}" data-name="${
         item.name
       }" data-quantity="${item.quantity}">
-      <img src=${item.imageUrl} alt="${item.name}" />
+      <div><img src=${item.imageUrl} alt="${item.name}" /></div>
       <p>Size: ${item.size}</p>
       <p>Price: $${item.price.toFixed(2)}</p>
       <p>Quantity: ${item.quantity}</p>
@@ -68,7 +69,7 @@ function displayCartItems() {
       <button class="remove">Remove One</button>
     </div>`;
     });
-    container.innerHTML += `<h3 class="total">Total $${getTotalPrice().toFixed(2)}</h3>`;
-    container.innerHTML += `<button id="checkout">Checkout</button>`;
+    container.innerHTML += `<div><h3 class="total">Total $${getTotalPrice().toFixed(2)}</h3>`;
+    container.innerHTML += `<button id="checkout">Checkout</button></div>`;
   }
 }

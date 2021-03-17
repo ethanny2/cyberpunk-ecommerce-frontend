@@ -1,5 +1,5 @@
 import "../sass/page_styling.scss";
-import "../sass/entireTheme.scss";
+// import "../sass/entireTheme.scss";
 // import { addToCart, fetchCart, getTotalItems, getTotalPrice, removeFromCart } from "./cart";
 
 export function registerNavEvent(callback) {
