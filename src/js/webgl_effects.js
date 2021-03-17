@@ -84,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // animate();
 function init() {
-  container = document.createElement("div");
-  container.id = "scene";
+  container = document.getElementById("scene");
+  // container.id = "scene";
   const main = document.getElementsByTagName("main")[0];
-  main.prepend(container);
+  // main.prepend(container);
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.z = 50;
   camera.position.y = 5;
@@ -101,8 +101,9 @@ function init() {
   const manager = new THREE.LoadingManager();
   let root = document.documentElement;
   manager.onLoad = function () {
-    const loadingScreen = document.getElementById("loader-wrap");
-    loadingScreen.classList.add("fade-out");
+    // const loadingScreen = document.getElementById("loader-wrap");
+    // loadingScreen.classList.add("fade-out");
+    container.children[0].remove();
     root.style.setProperty("--navZIndex", "1007");
     document.getElementsByTagName("main")[0].classList.remove("hidden");
   };
