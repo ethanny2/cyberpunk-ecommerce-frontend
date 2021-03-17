@@ -23,12 +23,12 @@ module.exports = merge(common, {
     // Contenthash substitution used for cache bursting
     filename: "js/[name].[contenthash].bundle.js",
     path: path.resolve(__dirname, "dist"),
-    assetModuleFilename: "images/[name][hash][ext]"
+    assetModuleFilename: "assets/[name][hash][ext]"
   },
   module: {
     rules: [
       {
-        test: /\.(jpg|JPG|jpeg|png|gif|mp4|svg|ttf|webp|woff2|woff|eot|webmanifest)$/i,
+        test: /\.(jpg|JPG|jpeg|png|gif|mp4|svg|ttf|webp|woff2|woff|eot|gltf|json|xml|ico)$/i,
         type: "asset/resource"
       },
       // Loads all font files
@@ -71,27 +71,27 @@ module.exports = merge(common, {
     new PurgecssPlugin({
       paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true })
     }),
-    new ImageMinimizerPlugin({
-      minimizerOptions: {
-        // Lossless optimization with custom option
-        // Feel free to experiment with options for better result for you
-        plugins: [
-          ["gifsicle", { interlaced: true }],
-          ["jpegtran", { progressive: true }],
-          ["optipng", { optimizationLevel: 2 }]
-          // [
-          //   "svgo",
-          //   {
-          //     plugins: [
-          //       {
-          //         removeViewBox: false
-          //       }
-          //     ]
-          //   }
-          // ]
-        ]
-      }
-    }),
+    // new ImageMinimizerPlugin({
+    //   minimizerOptions: {
+    //     // Lossless optimization with custom option
+    //     // Feel free to experiment with options for better result for you
+    //     plugins: [
+    //       ["gifsicle", { interlaced: true }],
+    //       ["jpegtran", { progressive: true }],
+    //       ["optipng", { optimizationLevel: 2 }]
+    //       // [
+    //       //   "svgo",
+    //       //   {
+    //       //     plugins: [
+    //       //       {
+    //       //         removeViewBox: false
+    //       //       }
+    //       //     ]
+    //       //   }
+    //       // ]
+    //     ]
+    //   }
+    // }),
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /\.optimize\.css$/g,
       cssProcessor: require("cssnano"),

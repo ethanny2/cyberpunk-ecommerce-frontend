@@ -51,7 +51,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(jpg|JPG|jpeg|png|gif|mp3|svg|ttf|webp|woff2|woff|eot|mtl|obj|dae|gltf)$/i,
+        test: /\.(jpg|JPG|jpeg|png|gif|mp4|svg|ttf|webp|woff2|woff|eot|gltf|json|xml|ico)$/i,
         type: "asset/resource"
       },
       // {
@@ -203,20 +203,20 @@ module.exports = {
       defaultAttribute: "defer"
     }),
     //Copy the entire directory of netlify functions to build folder
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, "./src/static/models/"),
-          /* Getting it to work in dev*/
-          to: "/static/models"
-        }
-        // {
-        //   from: path.resolve(__dirname, "./src/static/js/draco"),
-        //   /* Getting it to work in dev*/
-        //   to: "js/draco"
-        // }
-      ]
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, "./src/static/models/"),
+    //       /* Getting it to work in dev*/
+    //       to: "/static/models"
+    //     }
+    //     // {
+    //     //   from: path.resolve(__dirname, "./src/static/js/draco"),
+    //     //   /* Getting it to work in dev*/
+    //     //   to: "js/draco"
+    //     // }
+    //   ]
+    // }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
