@@ -3,8 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-weight: bold;
-  // overflow: hidden;
-  font-family: "Teko", sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 html {
   width: 100%;
@@ -14,110 +13,12 @@ html {
   position: relative;
 }
 
-main {
-  .full {
-  }
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 450px) {
-  .overlay a {
-    font-size: 20px;
-  }
-  .overlay .closebtn {
-    font-size: 40px;
-    top: 15px;
-    right: 35px;
-  }
-}
-
-.menu {
-  padding: 0;
-  margin: 0;
-  width: 25%;
-  height: 25%;
-  text-align: left;
-  right: 87%;
-  bottom: 80%;
-  position: fixed;
-}
-.menu img {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.logo_container {
-  text-align: center;
-  padding: 0;
-  width: 100%;
-  height: 10%;
-  margin: 0;
-  /*	 border: 1px solid gray;
-*/
-  overflow: hidden;
-  background: black;
-}
-.logo_container video {
-  width: 100%;
-  width: 120px !important;
-  height: auto !important;
-  background-size: cover;
-  transition: 1s opacity;
-  z-index: 1;
-  bottom: 120px;
-}
-
-.overlay-content > * {
-  color: white;
-  font-size: 200%;
-}
-
-.subtitle {
-  font-size: 130%;
-  margin-bottom: 0;
-}
-
-#about_content {
-  text-align: center;
-  font-size: 60%;
-  height: 50%;
-  position: relative;
-}
-#shop_content {
-  text-align: center;
-  font-size: 60%;
-  height: 50%;
-  position: relative;
-}
-#contact_content {
-  text-align: center;
-  font-size: 60%;
-  height: 50%;
-  position: relative;
-}
-
-.subtitle {
-  margin-bottom: 0;
-  cursor: pointer;
-}
-
-#contact_content {
-  text-align: center;
-  top: 20px;
-  padding-bottom: 10%;
-  margin: 0 auto;
-  display: block;
-  /*	border: 2px solid red;
-*/
-  width: 100%;
-}
 //New Styles
 :root {
   --navWidth: 3rem;
@@ -140,12 +41,12 @@ canvas {
 .full {
   height: 100vh;
 }
-.hideXOverflow{
+.hideXOverflow {
   overflow-x: hidden;
 }
 main {
   background: black;
- 
+
   // height: 100%;
   min-height: fit-content;
   // width:100%;
@@ -285,7 +186,7 @@ nav {
 }
 
 #loader-wrap {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
@@ -342,7 +243,7 @@ nav {
     font-size: 0.9rem;
     .total {
       margin: 0.5rem 0;
-      font-size:medium;
+      font-size: medium;
     }
   }
   .cart-item {
@@ -374,7 +275,7 @@ nav {
 button {
   font-size: 1rem;
   padding: 0.3rem;
-  font-family: "Teko", sans-serif;
+  font-family: Mon, sans-serif;
   color: black;
   background: white;
   border: 1px solid #181818a8;
@@ -643,7 +544,6 @@ h1 {
 }
 
 @media only screen and (min-width: 600px) {
-  
   #cart {
     padding: 0.8rem;
     .cart-item {
@@ -696,13 +596,12 @@ h1 {
     }
   }
   #shop {
-    .SPA-link{
-      width:60%;
+    .SPA-link {
+      width: 60%;
     }
     .product {
       img {
         width: 100%;
-
       }
     }
   }
@@ -710,9 +609,9 @@ h1 {
 
 /* At 1024px (laptop average size) and larger  */
 @media only screen and (min-width: 1024px) {
-  #shop{
-    .SPA-link{
-      width:40%;
+  #shop {
+    .SPA-link {
+      width: 40%;
     }
   }
 

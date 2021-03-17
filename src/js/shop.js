@@ -34,10 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pages[i].addEventListener("click", (e) => {
       if (e.target.localName == "img") {
         removeAllActive(pages);
-
-        console.log({ target: e.target });
         const newPageId = e.target.closest(".SPA-link").dataset.name;
-        console.log(newPageId);
         const newPage = document.getElementById(newPageId);
         newPage.classList.add("active");
         newPage.scrollIntoView();
@@ -51,7 +48,6 @@ function findProductName(e) {
   const size = e.target.parentNode.parentNode.children[2].value;
   product.size = size;
   addToCart(product);
-  console.log(fetchCart());
   updateCartDisplay();
 }
 
@@ -65,7 +61,6 @@ function navigateHomePage() {
   const pages = document.getElementsByClassName("SPA");
   removeAllActive(pages);
   const homePage = document.getElementById("shop-main");
-  console.log({ homePage });
   homePage.classList.add("active");
   homePage.scrollIntoView();
 }

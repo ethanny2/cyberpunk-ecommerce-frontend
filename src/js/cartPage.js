@@ -4,19 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
   displayCartItems();
   const removeBtns = document.getElementsByClassName("remove");
   const checkout = document.getElementById("checkout");
+  window.addEventListener("resize", resizePage);
   var stripe = window.Stripe(
     "pk_test_51IVT4eCRgr8XtIukiWENcc8xpnjz2YS6dB6OSa6yOjjPeSQSKWNmnQ0oDQB5r6afXxTdICjzMUVxgMuWYrUwjAy100xwg5q3jQ"
   );
-  console.log({ stripe });
   checkout.addEventListener("click", async () => {
     const lineItems = fetchCart().products.map((item) => ({ price: String(item.productId), quantity: item.quantity }));
-    const response = await stripe.redirectToCheckout({
+    await stripe.redirectToCheckout({
       mode: "payment",
       lineItems,
       successUrl: "http://localhost:9000/success.html",
       cancelUrl: "http://localhost:9000/failure.html"
     });
-    console.log(response);
   });
   for (let i = 0; i < removeBtns.length; i++) {
     const button = removeBtns[i];
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let quantity = Number(cartItem.dataset.quantity);
       const productName = cartItem.dataset.name;
       const productPrice = Number(cartItem.dataset.price);
-      console.log({ productName });
       const productSize = cartItem.dataset.size;
       quantity--;
       if (quantity <= 0) {
@@ -38,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         cartItem.dataset.quantity = quantity;
         subtotalElement.textContent = `Subtotal: $${(productPrice * quantity).toFixed(2)}`;
       }
-      console.log({ name: productName, size: productSize });
       //call removeFromCart with the appropriate product
       removeFromCart({ name: productName, size: productSize });
       updateCartDisplay(); //Update number display
@@ -47,20 +44,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// pngUrl: shirt1png,
-// webpUrl: shirt1webp,
-
 function displayCartItems() {
   const container = document.getElementById("cart-contents");
+  const main = document.getElementsByTagName("main")[0];
   const cart = fetchCart();
-  console.log(cart);
   if (cart.products.length <= 0) {
-    console.log(cart.products.length);
     container.innerHTML += `<h2>No Items in Cart</h2>`;
-    document.getElementsByTagName("main")[0].classList.add("full");
+    main.classList.add("full");
   } else {
+    resizePage();
     cart.products.forEach((item) => {
-      console.log({ item });
       container.innerHTML += `<div class="cart-item" data-price="${item.price}" data-size="${item.size}" data-name="${
         item.name
       }" data-quantity="${item.quantity}">
@@ -78,7 +71,15 @@ function displayCartItems() {
       <button class="remove">Remove One</button>
     </div>`;
     });
+
     container.innerHTML += `<div><p class="total">Total $${getTotalPrice().toFixed(2)}</p>`;
     container.innerHTML += `<button id="checkout">Checkout</button></div>`;
+  }
+}
+
+function resizePage() {
+  const main = document.getElementsByTagName("main")[0];
+  if (window.screen.width >= 600) {
+    main.classList.add("full");
   }
 }

@@ -8,13 +8,14 @@ import flare2 from "../static/images/lensflare2.jpg";
 import flare3 from "../static/images/lensflare3.png";
 import worldModel from "../static/models/earth.gltf";
 import skeletonModel from "../static/models/skeleton/plotting.gltf";
-import skyboxFront from "../static/images/skyboxes/ame_nebula/purplenebula_ft.png";
-import skyboxBack from "../static/images/skyboxes/ame_nebula/purplenebula_bk.png";
-import skyboxUp from "../static/images/skyboxes/ame_nebula/purplenebula_up.png";
-import skyboxDown from "../static/images/skyboxes/ame_nebula/purplenebula_dn.png";
-import skyboxRight from "../static/images/skyboxes/ame_nebula/purplenebula_rt.png";
-import skyboxLeft from "../static/images/skyboxes/ame_nebula/purplenebula_lf.png";
+import skyboxFront from "../static/images/skyboxes/ame_nebula/purplenebula_ft.jpg";
+import skyboxBack from "../static/images/skyboxes/ame_nebula/purplenebula_bk.jpg";
+import skyboxUp from "../static/images/skyboxes/ame_nebula/purplenebula_up.jpg";
+import skyboxDown from "../static/images/skyboxes/ame_nebula/purplenebula_dn.jpg";
+import skyboxRight from "../static/images/skyboxes/ame_nebula/purplenebula_rt.jpg";
+import skyboxLeft from "../static/images/skyboxes/ame_nebula/purplenebula_lf.jpg";
 import { registerNavEvent, handleCommandLineMessage } from "../js/index";
+import "intersection-observer";
 import { updateCartDisplay } from "./cart";
 const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
 // Initiate function or other initializations here
@@ -33,9 +34,7 @@ const introMessage =
   "Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change .";
 
 function handleOrientation(event) {
-  // console.log("Device orentation changed");
   var beta = event.beta; // x-axis -180- 180
-  // console.log({ beta });
   mouseY = (beta * 5 - windowHalfY) * 0.3;
 }
 
@@ -68,18 +67,14 @@ function handleIntersect(entries, observer) {
 
 document.addEventListener("DOMContentLoaded", () => {
   if (WEBGL.isWebGLAvailable()) {
-    console.log("DOM CONTENT LOADED");
     updateCartDisplay();
-    // if (isTouchEnabled()) document.addEventListener("touchmove", onMobileTouchMove, false);
     document.addEventListener("mousemove", onDocumentMouseMove, false);
-    // window.addEventListener("deviceorientation", handleOrientation);
+    if (isTouchEnabled()) window.addEventListener("deviceorientation", handleOrientation);
     registerNavEvent(onWindowResize);
     createObserver();
     init();
     animate();
-    document.getElementsByTagName("main")[0].classList.remove("hidden");
   } else {
-    console.log("NO WEBGL DETECTED");
     const warning = WEBGL.getWebGLErrorMessage();
     document.getElementById("container").appendChild(warning);
   }
@@ -87,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // animate();
 function init() {
-  console.log("Calling init()");
   container = document.createElement("div");
   container.id = "scene";
   const main = document.getElementsByTagName("main")[0];
@@ -103,17 +97,14 @@ function init() {
   dirLight.color.setHSL(0.1, 0.7, 0.5);
   scene.add(dirLight);
   const manager = new THREE.LoadingManager();
-  console.log({ manager });
   let root = document.documentElement;
-  // manager.onLoad = function () {
-  //   console.log("CALLED ON LOAD");
-  //   // const loadingScreen = document.getElementById("loader-wrap");
-  //   // loadingScreen.classList.add("fade-out");
-  //   // loadingScreen.addEventListener("transitionend", onTransitionEnd);
-  //   root.style.setProperty("--navZIndex", "1007");
-  //   console.log(document.getElementsByTagName("main")[0]);
-  //   document.getElementsByTagName("main")[0].classList.remove("hidden");
-  // };
+  manager.onLoad = function () {
+    const loadingScreen = document.getElementById("loader-wrap");
+    loadingScreen.classList.add("fade-out");
+    loadingScreen.addEventListener("transitionend", onTransitionEnd);
+    root.style.setProperty("--navZIndex", "1007");
+    document.getElementsByTagName("main")[0].classList.remove("hidden");
+  };
   // Function to add the lens flare light
   var textureLoader = new THREE.TextureLoader();
   var textureFlare0 = textureLoader.load(flare1);
@@ -142,7 +133,6 @@ function init() {
   const onProgress = function (xhr) {
     if (xhr.lengthComputable) {
       const percentComplete = (xhr.loaded / xhr.total) * 100;
-      console.log(Math.round(percentComplete, 2) + "% downloaded");
     }
   };
 
@@ -150,8 +140,8 @@ function init() {
   // var ambient = new THREE.AmbientLight(0x444444);
   var ambientLight = new THREE.AmbientLight(0xcccccc);
   scene.add(ambientLight);
-  const loader = new GLTFLoader();
-  const dracoLoader = new DRACOLoader();
+  const loader = new GLTFLoader(manager);
+  const dracoLoader = new DRACOLoader(manager);
   dracoLoader.setDecoderPath(dracoDecodePath);
   loader.setDRACOLoader(dracoLoader);
   loader.load(
@@ -174,7 +164,7 @@ function init() {
     function (gltf) {
       var animations = gltf.animations;
       mixer = new THREE.AnimationMixer(gltf.scene);
-      var action = mixer.clipAction(animations[0]).play();
+      mixer.clipAction(animations[0]).play();
       gltf.scene.position.y = -1;
       gltf.scene.scale.x = 1500;
       gltf.scene.scale.y = 1500;

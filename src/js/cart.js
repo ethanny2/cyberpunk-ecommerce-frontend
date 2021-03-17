@@ -20,7 +20,6 @@ export function updateCartDisplay() {
 
 export function addToCart(newProduct) {
   const cart = fetchCart();
-  console.log({ cart });
   const foundIndex = cart.products.findIndex(
     (product) => product.name === newProduct.name && product.size === newProduct.size
   );
