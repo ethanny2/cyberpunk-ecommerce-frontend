@@ -160,6 +160,7 @@ nav {
   width: var(--navWidth);
   border-right: 1px solid #181818a8;
   transition: opacity 0.3s ease-out, width 0.3s ease-out;
+  -webkit-transition: opacity 0.3s ease-out, width 0.3s ease-out;
   &.hidden {
     opacity: 0;
     pointer-events: none;
@@ -184,6 +185,8 @@ nav {
     display: none;
   }
   transition: opacity 0.4s ease;
+  -webkit-transition: opacity 0.4s ease;
+
 }
 
 /* Loading effects*/
@@ -398,9 +401,8 @@ button {
   position: absolute;
   transition: opacity ease 0.5s;
   -webkit-transition: opacity ease 0.5s;
-  webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
   display: flex;
   visibility: hidden;
   &.active {

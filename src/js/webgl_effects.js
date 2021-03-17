@@ -67,6 +67,8 @@ function handleIntersect(entries, observer) {
 
 document.addEventListener("DOMContentLoaded", () => {
   if (WEBGL.isWebGLAvailable()) {
+    const loadingScreen = document.getElementById("loader-wrap");
+    loadingScreen.addEventListener("transitionend", onTransitionEnd);
     updateCartDisplay();
     document.addEventListener("mousemove", onDocumentMouseMove, false);
     if (isTouchEnabled()) window.addEventListener("deviceorientation", handleOrientation);
@@ -101,7 +103,6 @@ function init() {
   manager.onLoad = function () {
     const loadingScreen = document.getElementById("loader-wrap");
     loadingScreen.classList.add("fade-out");
-    loadingScreen.addEventListener("transitionend", onTransitionEnd);
     root.style.setProperty("--navZIndex", "1007");
     document.getElementsByTagName("main")[0].classList.remove("hidden");
   };
