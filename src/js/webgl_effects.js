@@ -33,6 +33,11 @@ var windowHalfY = window.innerHeight / 2;
 const introMessage =
   "Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change .";
 
+THREE.Cache.enabled = true;
+
+const loadingScreen = document.getElementById("loader-wrap");
+loadingScreen.addEventListener("transitionend", onTransitionEnd);
+
 function handleOrientation(event) {
   var beta = event.beta; // x-axis -180- 180
   mouseY = (beta * 5 - windowHalfY) * 0.3;
@@ -67,8 +72,6 @@ function handleIntersect(entries, observer) {
 
 document.addEventListener("DOMContentLoaded", () => {
   if (WEBGL.isWebGLAvailable()) {
-    const loadingScreen = document.getElementById("loader-wrap");
-    loadingScreen.addEventListener("transitionend", onTransitionEnd);
     updateCartDisplay();
     document.addEventListener("mousemove", onDocumentMouseMove, false);
     if (isTouchEnabled()) window.addEventListener("deviceorientation", handleOrientation);
@@ -101,9 +104,9 @@ function init() {
   const manager = new THREE.LoadingManager();
   let root = document.documentElement;
   manager.onLoad = function () {
-    // const loadingScreen = document.getElementById("loader-wrap");
-    // loadingScreen.classList.add("fade-out");
-    container.children[0].remove();
+    const loadingScreen = document.getElementById("loader-wrap");
+    loadingScreen.classList.add("fade-out");
+    // container.children[0].remove();
     root.style.setProperty("--navZIndex", "1007");
     document.getElementsByTagName("main")[0].classList.remove("hidden");
   };
@@ -143,7 +146,7 @@ function init() {
   var ambientLight = new THREE.AmbientLight(0xcccccc);
   scene.add(ambientLight);
   const loader = new GLTFLoader(manager);
-  const dracoLoader = new DRACOLoader(manager);
+  const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath(dracoDecodePath);
   loader.setDRACOLoader(dracoLoader);
   loader.load(
