@@ -205,7 +205,7 @@ function init() {
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setClearColor(0xc5c5c3);
-  renderer.setSize(main.offsetWidth, main.offsetHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
   window.addEventListener("resize", onWindowResize, false);
   renderer.outputEncoding = THREE.sRGBEncoding;

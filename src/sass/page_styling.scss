@@ -204,7 +204,8 @@ nav {
   margin: auto;
   background-color: black;
   z-index: 1002;
-  transition: 1s opacity;
+  transition: 1s opacity ease;
+  -webkit-transition: opacity 1s ease;
 }
 #scanlines,
 .scanlines {
