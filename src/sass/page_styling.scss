@@ -44,6 +44,10 @@ canvas {
 .hideXOverflow {
   overflow-x: hidden;
 }
+
+main * {
+  -webkit-transform: translateZ(0px);
+}
 main {
   background: black;
 
@@ -60,7 +64,7 @@ main {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  -webkit-overflow-scrolling: touch;
+  
   &.hidden {
     visibility: hidden;
   }
@@ -141,12 +145,15 @@ nav a {
 
 nav {
   position: fixed;
+  will-change: transform;
   left: 0;
   z-index: var(--navZIndex);
   display: flex;
-  justify-content: space-between;
-  height: 100vh;
-  max-height: -webkit-fill-available;
+  justify-content: space-evenly;
+  // height: 100vh;
+  height:100%;
+  max-height: 100vh;
+  // min-height: 100vh;
   min-height: -webkit-fill-available;
   flex-direction: column;
   background: #504d4d;
