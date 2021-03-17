@@ -71,27 +71,27 @@ module.exports = merge(common, {
     new PurgecssPlugin({
       paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true })
     }),
-    // new ImageMinimizerPlugin({
-    //   minimizerOptions: {
-    //     // Lossless optimization with custom option
-    //     // Feel free to experiment with options for better result for you
-    //     plugins: [
-    //       ["gifsicle", { interlaced: true }],
-    //       ["jpegtran", { progressive: true }],
-    //       ["optipng", { optimizationLevel: 2 }]
-    //       // [
-    //       //   "svgo",
-    //       //   {
-    //       //     plugins: [
-    //       //       {
-    //       //         removeViewBox: false
-    //       //       }
-    //       //     ]
-    //       //   }
-    //       // ]
-    //     ]
-    //   }
-    // }),
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+        // Lossless optimization with custom option
+        // Feel free to experiment with options for better result for you
+        plugins: [
+          ["gifsicle", { interlaced: true }],
+          ["jpegtran", { progressive: true }],
+          ["optipng", { optimizationLevel: 2 }]
+          // [
+          //   "svgo",
+          //   {
+          //     plugins: [
+          //       {
+          //         removeViewBox: false
+          //       }
+          //     ]
+          //   }
+          // ]
+        ]
+      }
+    }),
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /\.optimize\.css$/g,
       cssProcessor: require("cssnano"),
