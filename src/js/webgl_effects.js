@@ -18,13 +18,10 @@ import { registerNavEvent, handleCommandLineMessage } from "../js/index";
 import "intersection-observer";
 import { updateCartDisplay } from "./cart";
 const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
-// Initiate function or other initializations here
 var container;
 var clock;
 var camera, scene, renderer;
-// var mesh, lightMesh, geometry;
 var spheres = [];
-// var directionalLight, pointLight;
 var mixer;
 var mouseX = 0;
 var mouseY = 0;
@@ -33,7 +30,7 @@ var windowHalfY = window.innerHeight / 2;
 const introMessage =
   "Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change .";
 
-THREE.Cache.enabled = true;
+// THREE.Cache.enabled = true;
 
 const loadingScreen = document.getElementById("loader-wrap");
 loadingScreen.addEventListener("transitionend", onTransitionEnd);
@@ -85,12 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// animate();
 function init() {
   container = document.getElementById("scene");
-  // container.id = "scene";
   const main = document.getElementsByTagName("main")[0];
-  // main.prepend(container);
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.z = 50;
   camera.position.y = 5;
@@ -103,13 +97,21 @@ function init() {
   scene.add(dirLight);
   const manager = new THREE.LoadingManager();
   let root = document.documentElement;
+  const loadingScreen = document.getElementById("loader-wrap");
   manager.onLoad = function () {
-    const loadingScreen = document.getElementById("loader-wrap");
     loadingScreen.classList.add("fade-out");
     // container.children[0].remove();
-    root.style.setProperty("--navZIndex", "1007");
-    document.getElementsByTagName("main")[0].classList.remove("hidden");
+    // root.style.setProperty("--navZIndex", "1007");
+    // document.getElementsByTagName("main")[0].classList.remove("hidden");
   };
+  /* Sometimes the loader will not trigger onLoad*/
+  if (!loadingScreen.classList.contains("fade-out")) {
+    setTimeout(() => {
+      loadingScreen.classList.add("fade-out");
+      // root.style.setProperty("--navZIndex", "1007");
+      // document.getElementsByTagName("main")[0].classList.remove("hidden");
+    }, 2000);
+  }
   // Function to add the lens flare light
   var textureLoader = new THREE.TextureLoader();
   var textureFlare0 = textureLoader.load(flare1);
@@ -141,13 +143,16 @@ function init() {
     }
   };
 
-  const onError = function () {};
+  const onError = function (url) {
+    alert("There was an error loading " + url);
+  };
   // var ambient = new THREE.AmbientLight(0x444444);
   var ambientLight = new THREE.AmbientLight(0xcccccc);
   scene.add(ambientLight);
   const loader = new GLTFLoader(manager);
   const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath(dracoDecodePath);
+  dracoLoader.preload();
   loader.setDRACOLoader(dracoLoader);
   loader.load(
     worldModel,
