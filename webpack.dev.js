@@ -1,9 +1,10 @@
 /* eslint-disable */
-const {merge} = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "development",
@@ -14,7 +15,7 @@ module.exports = merge(common, {
     fallback: {
       fs: false
     }
-  }, 
+  },
   devtool: "inline-source-map",
   output: {
     filename: "js/[name].bundle.js",
@@ -22,8 +23,6 @@ module.exports = merge(common, {
   },
   module: {
     rules: [
-     
-    
       // // Loads all JSON and text files; add more based on your needs
       // {
       //   test: /\.(txt|json)$/i,
@@ -48,19 +47,35 @@ module.exports = merge(common, {
       // }
     ]
   },
+
+  plugins: [
+    // new MiniCssExtractPlugin({
+    //   filename: "css/style.css",
+    //   chunkFilename: "css/style.[id].css"
+    // })
+    // new CopyPlugin({
+    //   patterns: [
+    //     // {
+    //     //   from: path.resolve(__dirname, "./src/static/models/"),
+    //     //   /* Getting it to work in dev*/
+    //     //   to: "/static/models"
+    //     // }
+    //     {
+    //       from: path.resolve(__dirname, "./src/js/draco"),
+    //       /* Getting it to work in dev*/
+    //       to: "js/draco"
+    //     }
+    //   ]
+    // })
+  ],
   devServer: {
     contentBase: path.join(__dirname, "src/static"),
     compress: true,
     hot: true,
     port: 9000,
     watchContentBase: true,
+    writeToDisk: true
   },
-  plugins: [
-    // new MiniCssExtractPlugin({
-    //   filename: "css/style.css",
-    //   chunkFilename: "css/style.[id].css"
-    // })
-  ],
   optimization: {
     splitChunks: {
       cacheGroups: {

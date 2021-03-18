@@ -18,6 +18,7 @@ import { registerNavEvent, handleCommandLineMessage } from "../js/index";
 import "intersection-observer";
 import { updateCartDisplay } from "./cart";
 const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
+// const dracoDecodePath = "./js/vendor/draco/";
 var container;
 var clock;
 var camera, scene, renderer;
@@ -29,10 +30,21 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 const introMessage =
   "Elseif is an online clothing store created as a collaboration between a programmer and a designer. Products range from modern clothing to fan merchandise for current artists. The brand name and logo is tentative and subject to change .";
-
-// THREE.Cache.enabled = true;
-
+const manager = new THREE.LoadingManager();
 const loadingScreen = document.getElementById("loader-wrap");
+const loader = new GLTFLoader(manager);
+const dracoLoader = new DRACOLoader(manager);
+dracoLoader.setDecoderPath(dracoDecodePath);
+// dracoLoader.setDecoderPath("../../node_modules/three/examples/js/libs/draco/gltf/");
+dracoLoader.setDecoderConfig({ type: "js" });
+dracoLoader.preload();
+loader.setDRACOLoader(dracoLoader);
+THREE.Cache.enabled = true;
+
+manager.onLoad = function () {
+  loadingScreen.classList.add("fade-out");
+};
+
 loadingScreen.addEventListener("transitionend", onTransitionEnd);
 
 function handleOrientation(event) {
@@ -84,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function init() {
   container = document.getElementById("scene");
-  const main = document.getElementsByTagName("main")[0];
   camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.z = 50;
   camera.position.y = 5;
@@ -95,23 +106,8 @@ function init() {
   dirLight.position.set(0, -1, 0).normalize();
   dirLight.color.setHSL(0.1, 0.7, 0.5);
   scene.add(dirLight);
-  const manager = new THREE.LoadingManager();
-  let root = document.documentElement;
   const loadingScreen = document.getElementById("loader-wrap");
-  manager.onLoad = function () {
-    loadingScreen.classList.add("fade-out");
-    // container.children[0].remove();
-    // root.style.setProperty("--navZIndex", "1007");
-    // document.getElementsByTagName("main")[0].classList.remove("hidden");
-  };
   /* Sometimes the loader will not trigger onLoad*/
-  if (!loadingScreen.classList.contains("fade-out")) {
-    setTimeout(() => {
-      loadingScreen.classList.add("fade-out");
-      // root.style.setProperty("--navZIndex", "1007");
-      // document.getElementsByTagName("main")[0].classList.remove("hidden");
-    }, 2000);
-  }
   // Function to add the lens flare light
   var textureLoader = new THREE.TextureLoader();
   var textureFlare0 = textureLoader.load(flare1);
@@ -149,11 +145,6 @@ function init() {
   // var ambient = new THREE.AmbientLight(0x444444);
   var ambientLight = new THREE.AmbientLight(0xcccccc);
   scene.add(ambientLight);
-  const loader = new GLTFLoader(manager);
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath(dracoDecodePath);
-  dracoLoader.preload();
-  loader.setDRACOLoader(dracoLoader);
   loader.load(
     worldModel,
     function (gltf) {

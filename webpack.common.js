@@ -205,16 +205,16 @@ module.exports = {
     //Copy the entire directory of netlify functions to build folder
     // new CopyPlugin({
     //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, "./src/static/models/"),
-    //       /* Getting it to work in dev*/
-    //       to: "/static/models"
-    //     }
     //     // {
-    //     //   from: path.resolve(__dirname, "./src/static/js/draco"),
+    //     //   from: path.resolve(__dirname, "./src/static/models/"),
     //     //   /* Getting it to work in dev*/
-    //     //   to: "js/draco"
+    //     //   to: "/static/models"
     //     // }
+    //     {
+    //       from: path.resolve(__dirname, "./src/static/js/draco"),
+    //       /* Getting it to work in dev*/
+    //       to: "js/draco"
+    //     }
     //   ]
     // }),
     new MiniCssExtractPlugin({
