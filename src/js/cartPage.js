@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     await stripe.redirectToCheckout({
       mode: "payment",
       lineItems,
-      successUrl: "http://localhost:9000/success.html",
-      cancelUrl: "http://localhost:9000/failure.html"
+      successUrl: "https://elseifclothing.netlify.app/success",
+      cancelUrl: "https://elseifclothing.netlify.app/failure"
     });
   });
   for (let i = 0; i < removeBtns.length; i++) {

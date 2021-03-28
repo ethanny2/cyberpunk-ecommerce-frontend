@@ -35,7 +35,6 @@ const loadingScreen = document.getElementById("loader-wrap");
 const loader = new GLTFLoader(manager);
 const dracoLoader = new DRACOLoader(manager);
 dracoLoader.setDecoderPath(dracoDecodePath);
-// dracoLoader.setDecoderPath("../../node_modules/three/examples/js/libs/draco/gltf/");
 dracoLoader.setDecoderConfig({ type: "js" });
 dracoLoader.preload();
 loader.setDRACOLoader(dracoLoader);

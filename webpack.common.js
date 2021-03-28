@@ -2,9 +2,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
 const index = path.resolve(__dirname, "./src/js/index.js");
 const three = path.resolve(__dirname, "./src/js/webgl_effects.js");
 const nav = path.resolve(__dirname, "./src/js/navFunction.js");
@@ -12,20 +10,15 @@ const shop = path.resolve(__dirname, "./src/js/shop.js");
 const cart = path.resolve(__dirname, "./src/js/cartPage.js");
 const success = path.resolve(__dirname, "./src/js/success.js");
 const failure = path.resolve(__dirname, "./src/js/failure.js");
-
 const nodePath = path.resolve(__dirname, "./node_modules");
-const webpack = require("webpack");
 
 module.exports = {
   target: "web",
-  // node: {
-  //   fs: "empty"
-  // },
+
   resolve: {
     fallback: {
       fs: false
     }
-    // fallback: { path: false }
   },
   stats: {
     chunks: true,
@@ -54,21 +47,7 @@ module.exports = {
         test: /\.(jpg|JPG|jpeg|png|gif|mp4|svg|ttf|webp|woff2|woff|eot|gltf|json|xml|ico)$/i,
         type: "asset/resource"
       },
-      // {
-      //   test: /\.(jpg|JPG|jpeg|png|gif|mp3|svg|ttf|webp|woff2|woff|eot)$/i,
-      //   use: [
-      //     {
-      //       loader: "file-loader",
-      //       options: {
-      //         outputPath: "images/",
-      //         name: "[name].[ext]",
-      //         // name: "[name].[contenthash].[ext]",
-      //         esModule: false
-      //       }
-      //     }
-      //   ]
-      // },
-      // Targets all .js files
+
       {
         test: /\.m?js$/i,
         exclude: nodePath,
@@ -96,12 +75,7 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/i,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              // Path all assets AFTER build process
-              // publicPath: ""
-              // hmr: true
-            }
+            loader: MiniCssExtractPlugin.loader
           },
           // Translates CSS into CommonJS
           {
@@ -122,24 +96,9 @@ module.exports = {
           }
         ]
       }
-      // {
-      //   test: /\.(html)$/,
-      //   use: {
-      //     loader: "html-loader",
-      //     options: {
-      //       minimize: true,
-      //       esModule: false
-      //       // root: path.resolve(__dirname, "dist")
-      //     }
-      //   }
-      // }
     ]
   },
   plugins: [
-    // new webpack.ProvidePlugin({
-    //   $: "jquery",
-    //   jQuery: "jquery"
-    // }),
     new HtmlWebpackPlugin({
       title: "Else If Clothing",
       filename: "index.html",
@@ -188,35 +147,11 @@ module.exports = {
       chunks: ["index", "nav", "failure"],
       minify: true
     }),
-    //Adds rel="preload" to fonts;
-    // new PreloadWebpackPlugin({
-    //   rel: "preload",
-    //   as(entry) {
-    //     if (/\.(woff|woff2|ttf|otf)$/.test(entry)) return "font";
-    //   },
-    //   fileWhitelist: [/\.(woff|woff2|ttf|otf)$/],
-    //   //Includes all assets; even fonts loaded by file-loader
-    //   include: "allAssets"
-    // }),
-    //Adds defer to js scripts to speed load times.
+
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: "defer"
     }),
-    //Copy the entire directory of netlify functions to build folder
-    // new CopyPlugin({
-    //   patterns: [
-    //     // {
-    //     //   from: path.resolve(__dirname, "./src/static/models/"),
-    //     //   /* Getting it to work in dev*/
-    //     //   to: "/static/models"
-    //     // }
-    //     {
-    //       from: path.resolve(__dirname, "./src/static/js/draco"),
-    //       /* Getting it to work in dev*/
-    //       to: "js/draco"
-    //     }
-    //   ]
-    // }),
+
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"

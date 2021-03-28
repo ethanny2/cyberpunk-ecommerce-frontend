@@ -1,43 +1,145 @@
-![Issues](https://img.shields.io/github/issues/ethanny2/webpack-lighthouse100-template) ![forks](https://img.shields.io/github/forks/ethanny2/webpack-lighthouse100-template) ![Stars](https://img.shields.io/github/stars/ethanny2/webpack-lighthouse100-template)  ![License](https://img.shields.io/github/license/ethanny2/webpack-lighthouse100-template) [![Twitter Badge](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/ArrayLikeObj)
+[![GitHub license](https://img.shields.io/github/license/cyberpunk-ecommerce-frontend)](https://github.com/cyberpunk-ecommerce-frontend)[![GitHub stars](https://img.shields.io/github/stars/cyberpunk-ecommerce-frontend)](https://github.com/cyberpunk-ecommerce-frontend/stargazers)[![GitHub forks](https://img.shields.io/github/forks/cyberpunk-ecommerce-frontend)](https://github.com/cyberpunk-ecommerce-frontend/network)[![Twitter Badge](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/ArrayLikeObj)
 
-# Webpack Lighthouse 100 Template
+# Cyberpunk Themed eCommerce store 
+
+## [https://elseifclothing.netlify.app/](https://elseifclothing.netlify.app/)
 
 
 <p align="center">
-
-<img src="https://media4.giphy.com/media/AZQvjAAkSmkYCkNaJM/giphy.gif" alt="Gif of lighthouse perfect 100 fireworks" />
-
+  <img  src="https://media3.giphy.com/media/9YQOEXWsHmjFYptoyi/giphy.gif" alt="Demo gif">
 </p>
 
-##[Try it your self!](https://static-lighthouse100.netlify.app/)
- A template that utilizes the webpack (4) bundler along with its robust plugin environment to make a template that is optimized for best practices in a production environment.
+## Background
 
-***Note: Most of the rules in the webpack files have breif comments explaining them but if you want a more in-depth explaination of any of the more intracate details please see the README of this [Repo](https://github.com/ethanny2/threejs-es6-webpack-barebones-boilerplate) (Essentially this template uses the same config as the linked repo, the only difference is the other repo just uses Threejs. The explanations for the webpack rules should still apply).**
+The original concept for the site was to sell clothing for my short-lived clothing brand **"else-if" clothing**. The site was originally hosted on Big Cartel and was made using their custom platform which abstracted the product backend and gave developers a nice interface to interact with the backend through templating and ruby + Coffeescript.
 
- ## Features
+This site is meant to emulate the 80s / 90s cyberpunk aesthetic commonly seen in pop culture by having the UI look like a CRT monitor with scanlines, text being animated like a command prompt etc...
+
+**Goals (for rehosting site)** : 
+   - Optimize the bundle size and lighthouse scores
+   - Completely redo the design [because the site previously ran with CoffeeScript and some templating language from Big Cartel](https://github.com/bigcartel/dugway)
+   - Replace the Big Cartel backend with Stripe Client side checkout
+
+## Technology used
+- SCSS
+- webpack 5 
+- Stripe Checkout
+- Threejs
+- Draco Compression of GLTF models
+- Image optimizations with webp + fallbacks
+- Intersection Observer
+- webgl lens flare effect
+- Client side cart system with persistence through localStorage
   
-- ### Minification 
-  - All HTML, CSS/SCSS, and JS files
-- ### Dev Environment with Hot Module Reloading 
-  - Works for HTML,CSS/SCSS, JS files
-  - Ability to serve your static site over a local network (see command start-mobile-dev) to view on different real devices
-- ### PurgeCSS 
-  - To detect and remove unused CSS (essential when using styling libraries like Boostrap)
-- ### Autoprefixer
-  -  To automatically include vendor prefixes for CSS properties
-- ### Cache Bursting
-  -  A technique  used to invalidate old versions of the site when re-building
-- ### All Static Assets in Webpack Dependency Graph
-  - Import images, auido and CSS/SCSS/SASS files directly into your JavaScript as variables
-- ### Image Compression
-  - Uses ImageminPlugin to compress images used automatically
-- ### Compression of all other static files
-  - Gzip compression of all assets for faster speeds over the wire
-- ### Chunking Strategy optimized for HTTPS/2 connections
-  - [Source 1](https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758) 
-  - [Source 2](https://calendar.perfplanet.com/2019/bundling-javascript-for-performance-best-practices/)
+## Concepts
 
-- ### Support for Netlify Serverless Functions 
-  - Set up with the CopyWebpack plugin; also included is a netlify.toml if you are using the Netlify CLI
+### Threejs + Draco Compression
+
+Integrating the Three.js webgl library with webpack 5 to display the graphic on the home page. I applied [Draco compression](https://google.github.io/draco/) to my .gltf model to drastically reduce the size of the models and thus the websites bundle size. Models were converted to draco compressed gltfs via the [gltf-pipeline CLI](https://github.com/CesiumGS/gltf-pipeline).
+```
+const dracoDecodePath = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
+const loader = new GLTFLoader(manager);
+const dracoLoader = new DRACOLoader(manager);
+dracoLoader.setDecoderPath(dracoDecodePath);
+dracoLoader.setDecoderConfig({ type: "js" });
+dracoLoader.preload();
+loader.setDRACOLoader(dracoLoader);
+```
+
+### Stripe Checkout + Local Storage Cart
+
+Since the Big Cartel backend attached to this site is no longer active I opted to have the entire store operate on the client side with checkout via the Stripe client side library.
+```
+checkout.addEventListener("click", async () => {
+    const lineItems = fetchCart().products.map((item) => ({ price: String(item.productId), quantity: item.quantity }));
+    await stripe.redirectToCheckout({
+      mode: "payment",
+      lineItems,
+      successUrl: "https://elseifclothing.netlify.app/success",
+      cancelUrl: "https://elseifclothing.netlify.app/failure"
+    });
+  });
+```
+
+The cart is a quick implementation written on the client side with persistence. 
+
+```
+...
+export function fetchCart() {
+  return JSON.parse(localStorage.getItem(CART_KEY)) || { products: [] };
+}
+export function updateCartDisplay() {
+  document.getElementById("lblCartCount").textContent = getTotalItems() || "";
+}
+
+export function addToCart(newProduct) {
+  const cart = fetchCart();
+  const foundIndex = cart.products.findIndex(
+    (product) => product.name === newProduct.name && product.size === newProduct.size
+  );
+  if (foundIndex !== -1) {
+    cart.products[foundIndex].quantity++;
+  } else {
+    newProduct.quantity = 1;
+    cart.products.push(newProduct);
+  }
+  updateCart(cart);
+}
+...
+```
+
+### Intersection Observer API (w/ Polyfill)
+
+Implementing the polyfill version (so I can test on my older phone) of the Intersection Observer API so that when certain text is scrolled into the viewport a terminal/ command prompt effect types out the text.
+
+```
+function createObserver() {
+  const cmd = document.getElementsByClassName("typing")[0];
+  let observer;
+  let options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: [0.5]
+  };
+  observer = new IntersectionObserver(handleIntersect, options);
+  observer.observe(cmd);
+}
+
+function handleIntersect(entries, observer) {
+  const cmd = document.getElementsByClassName("typing")[0];
+  entries.forEach((entry) => {
+    if (entry.intersectionRatio > 0.5) {
+      handleCommandLineMessage(introMessage);
+      // Only happens once
+      observer.unobserve(cmd);
+    }
+  });
+}
+```
+
+### webpack 5 bundling
+
+Using my own custom webpack 5 dev and production configuration to have a local dev-server with [hot module replacement](https://webpack.js.org/concepts/hot-module-replacement/) and optimizied production build with minification, auto-prefixing for CSS properties and more. The upgrade from webpack 4 -> webpack 5 makes bundling static assets  (images, json files etc...) very easy.
+```
+/* loads nearly all assets; no external plugins */
+{
+        test: /\.(jpg|JPG|jpeg|png|gif|mp3|svg|ttf|webp|woff2|woff|eot)$/i,
+        type: "asset/resource"
+},
+```
 
 
+### webp images with fallback
+
+Running a script as a pre-build step convert all png/jpg files to webp versions to cut back on bundle sizes for browsers that do support webp images.
+```
+(async () => {
+  const img = await imagemin([path.resolve(__dirname, "src/static/images/*.{jpg,png}").replace(/\\/g, "/")], {
+    destination: path.resolve(__dirname, "src/static/images/").replace(/\\/g, "/"),
+    plugins: [imageminWebp({ quality: 70 })]
+  });
+  console.log(img);
+  console.log("Done converting images");
+})();
+
+```
