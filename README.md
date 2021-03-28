@@ -1,4 +1,5 @@
-[![GitHub license](https://img.shields.io/github/license/cyberpunk-ecommerce-frontend)](https://github.com/cyberpunk-ecommerce-frontend)[![GitHub stars](https://img.shields.io/github/stars/cyberpunk-ecommerce-frontend)](https://github.com/cyberpunk-ecommerce-frontend/stargazers)[![GitHub forks](https://img.shields.io/github/forks/cyberpunk-ecommerce-frontend)](https://github.com/cyberpunk-ecommerce-frontend/network)[![Twitter Badge](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/ArrayLikeObj)
+[![GitHub issues](https://img.shields.io/github/issues/ethanny2/cyberpunk-ecommerce-frontend)](https://github.com/ethanny2/cyberpunk-ecommerce-frontend/issues)[![GitHub forks](https://img.shields.io/github/forks/ethanny2/cyberpunk-ecommerce-frontend)](https://github.com/ethanny2/cyberpunk-ecommerce-frontend/network)[![GitHub stars](https://img.shields.io/github/stars/ethanny2/cyberpunk-ecommerce-frontend)](https://github.com/ethanny2/cyberpunk-ecommerce-frontend/stargazers)[![GitHub license](https://img.shields.io/github/license/ethanny2/cyberpunk-ecommerce-frontend)](https://github.com/ethanny2/cyberpunk-ecommerce-frontend/blob/main/LICENSE)[![Twitter Badge](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/ArrayLikeObj)
+
 
 # Cyberpunk Themed eCommerce store 
 
